@@ -7,5 +7,5 @@ have direct access to both a browser DOM and node.js stuff.
 
 Use it like cucumber-js:
 ```
-cucumber-electron ./path/to/some.feature:123
+cucumber-electron ./example/features/hello.feature:2
 ```
