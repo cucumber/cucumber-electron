@@ -9,6 +9,7 @@ require('gherkin').Parser = window.Gherkin.Parser
 require('gherkin').Compiler = window.Gherkin.Compiler
 require('gherkin').DIALECTS = window.Gherkin.DIALECTS
 
+
 var cli = require('./cli')(electron.remote.process.argv)
 
 var stdout = electron.remote.process.stdout
@@ -16,9 +17,9 @@ var stdout = electron.remote.process.stdout
 function log() {
   var args = [].slice.apply(arguments)
   stdout.write.apply(null, args)
-  var output = convert.toHtml(args[0].toString(), { fg: '#000', bg: '#fff' })
+  var htmlSafeOutput = args[0].toString().replace(/</g, '&lt;').replace(/>/g, '&gt;')
   var pre = document.createElement('pre')
-  pre.innerHTML = output
+  pre.innerHTML = convert.toHtml(htmlSafeOutput, { fg: '#000', bg: '#fff' })
   document.body.appendChild(pre)
 }
 
