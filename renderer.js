@@ -9,6 +9,8 @@ require('gherkin').Parser = window.Gherkin.Parser
 require('gherkin').Compiler = window.Gherkin.Compiler
 require('gherkin').DIALECTS = window.Gherkin.DIALECTS
 
+var cli = require('./cli')(electron.remote.process.argv)
+
 var stdout = electron.remote.process.stdout
 
 function log() {
@@ -28,13 +30,18 @@ Cucumber.Listener.PrettyFormatter = function(options) {
 
 var args = JSON.parse(decodeURIComponent(window.location.hash.substr(1)))
 
-var cli = Cucumber.Cli([`${__dirname}/node_modules/.bin/cucumberjs`, __dirname].concat(args));
+var cucumberCli = Cucumber.Cli([`${__dirname}/node_modules/.bin/cucumberjs`, __dirname].concat(args));
+
+function exitWithCode(code) {
+  if (cli.electronDebug) return
+  electron.remote.process.exit(code)
+}
 
 try {
-  cli.run(function (succeeded) {
-    electron.remote.process.exit(succeeded ? 0 : 1)
+  cucumberCli.run(function(succeeded) {
+    exitWithCode(succeeded ? 0 : 1)
   });
 } catch (err) {
   log(err.stack)
-  electron.remote.process.exit(2)
+  exitWithCode(2)
 }

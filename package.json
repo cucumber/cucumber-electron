@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "ansi-to-html": "^0.4.2",
+    "commander": "^2.9.0",
     "cucumber": "git://github.com/cucumber/cucumber-js.git",
     "electron": "^1.4.7"
   },
