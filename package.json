@@ -8,7 +8,7 @@
   },
   "scripts": {},
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "ansi-to-html": "^0.4.2",
     "commander": "^2.9.0",
