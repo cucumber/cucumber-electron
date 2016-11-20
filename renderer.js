@@ -45,3 +45,10 @@ try {
   log(err.stack)
   exitWithCode(2)
 }
+
+document.body.addEventListener("keydown", function(e) {
+  e = e || window.event;
+  var key = e.which || e.keyCode;
+  var ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false);
+  if ( key == 67 && ctrl ) { electron.remote.process.exit(0) }
+}, false);
