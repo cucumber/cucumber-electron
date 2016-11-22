@@ -1,13 +1,12 @@
 # cucumber-electron 
 
-Runs cucumber-js in an electron renderer process, meaning cucumber scenarios
-have direct access to both a browser DOM and node.js stuff.
+Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](https://github.com/electron/electron) renderer process. Scenarios have direct access to both a browser DOM and node.js libraries, so they run pretty fast.
 
 [![Build Status](https://travis-ci.org/featurist/cucumber-electron.svg?branch=master)](https://travis-ci.org/featurist/cucumber-electron)
 
 ## Usage
 
-Use it like cucumber-js:
+Run it like it was cucumber-js:
 ```
 cucumber-electron ./example/features/hello.feature:2
 ```
