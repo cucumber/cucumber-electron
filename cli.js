@@ -1,4 +1,4 @@
-var program = require('commander')
+const program = require('commander')
 
 module.exports = function cli(argv) {
   return program

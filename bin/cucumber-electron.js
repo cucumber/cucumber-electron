@@ -3,7 +3,6 @@
 var childProcess = require('child_process')
 var path = require('path')
 
-var Cucumber = require('cucumber')
 var electron = require('electron')
 
 var args = [path.join(__dirname, '..')].concat(process.argv.slice(2))
