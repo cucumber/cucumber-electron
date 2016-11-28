@@ -26,16 +26,14 @@ Cucumber.Listener.PrettyFormatter = function(options) {
   return PrettyFormatter(options)
 }
 
-const args = JSON.parse(decodeURIComponent(window.location.hash.substr(1)))
-
-const cucumberCli = Cucumber.Cli([`${__dirname}/node_modules/.bin/cucumberjs`, __dirname].concat(args))
-
 function exitWithCode(code) {
   if (cli.electronDebug) return
   electron.remote.process.exit(code)
 }
 
 try {
+  const args = JSON.parse(decodeURIComponent(window.location.hash.substr(1)))
+  const cucumberCli = Cucumber.Cli(['', process.cwd()].concat(args))
   cucumberCli.run(succeeded => exitWithCode(succeeded ? 0 : 1))
 } catch (err) {
   log(err.stack)
