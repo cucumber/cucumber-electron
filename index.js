@@ -1,6 +1,7 @@
 const electron = require('electron')
 const cli = require('./cli')(process.argv)
 const app = electron.app
+app.commandLine.appendSwitch('--disable-http-cache')
 
 const BrowserWindow = electron.BrowserWindow
 
