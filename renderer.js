@@ -33,7 +33,7 @@ function exitWithCode(code) {
 
 try {
   const args = JSON.parse(decodeURIComponent(window.location.hash.substr(1)))
-  const cucumberCli = Cucumber.Cli(['', process.cwd()].concat(args))
+  const cucumberCli = Cucumber.Cli(['', process.cwd()].concat(args.filter(a => a != '--electron-debug')))
   cucumberCli.run(succeeded => exitWithCode(succeeded ? 0 : 1))
 } catch (err) {
   log(err.stack)
