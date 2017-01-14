@@ -1,36 +1,36 @@
+const path = require('path')
+const url = require('url')
 const electron = require('electron')
-const cli = require('./cli')(process.argv)
+const Options = require('./cli/options')
+
+const options = new Options(process.argv)
+
 const app = electron.app
 app.commandLine.appendSwitch('--disable-http-cache')
 
-const BrowserWindow = electron.BrowserWindow
-
-const path = require('path')
-const url = require('url')
-
 let mainWindow
 
-function createWindow () {
-  mainWindow = new BrowserWindow({
+function createWindow() {
+  mainWindow = new electron.BrowserWindow({
     width: 800,
     height: 600,
-    show: !!cli.electronDebug,
+    show: options.electronDebug,
     webPreferences: { webSecurity: false }
   })
 
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'renderer', 'index.html'),
     protocol: 'file:',
-    slashes: true,
-    hash: encodeURIComponent(JSON.stringify(process.argv.slice(2)))
+    slashes: true
   }))
 
   mainWindow.webContents.session.webRequest.onHeadersReceived({}, (d, c) => {
-    if(d.responseHeaders['x-frame-options'] || d.responseHeaders['X-Frame-Options']){
-        delete d.responseHeaders['x-frame-options'];
-        delete d.responseHeaders['X-Frame-Options'];
+    for (const header in d.responseHeaders) {
+      if (header.toLowerCase() == 'x-frame-options') {
+        delete d[header]
+      }
     }
-    c({cancel: false, responseHeaders: d.responseHeaders});
+    c({ cancel: false, responseHeaders: d.responseHeaders })
   })
 
   mainWindow.on('closed', function () {

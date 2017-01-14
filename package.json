@@ -1,24 +1,29 @@
 {
   "name": "cucumber-electron",
-  "version": "1.2.5",
-  "description": "Run cucumber.js in electron",
+  "version": "2.0.0",
+  "description": "Runs cucumber.js in electron",
   "main": "index.js",
   "bin": {
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "test": "./bin/cucumber-electron.js ./example/features"
+    "test": "cucumber.js"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "ansi-to-html": "0.4.2",
     "commander": "2.9.0",
-    "cucumber": "1.3.1",
+    "cucumber": "^2.0.0-rc.6",
     "electron": "1.4.14"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/featurist/cucumber-electron.git"
+  },
+  "devDependencies": {
+    "fs-promise": "^1.0.0",
+    "mkdirp-promise": "^5.0.0",
+    "rmfr": "^1.0.1"
   }
 }
