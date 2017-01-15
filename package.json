@@ -7,7 +7,7 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "test": "cucumber.js"
+    "test": "cucumber.js && ./bin/cucumber-electron.js"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "license": "MIT",
