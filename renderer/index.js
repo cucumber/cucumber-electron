@@ -17,7 +17,6 @@ process.on('unhandledRejection', function(reason) {
 
 function exitWithCode(code) {
   if (options.electronDebug) return
-  electron.remote.getGlobal('console').log("EXITING WITH CODE", code)
   electron.remote.process.exit(code)
 }
 
