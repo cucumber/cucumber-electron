@@ -47,4 +47,17 @@ defineSupportCode(function({ Given, When, Then, Before }) {
       }, 500)
     })
   })
+
+  Then('the output should include:', function (string) {
+    return new Promise((resolve, reject) => {
+      this.process.on('exit', () => {
+        setTimeout(() => {
+          if (this.execResult.stdout.indexOf(string) == -1) {
+            reject(new Error(`Expected stdout to include:\n${string}\nActual stdout:\n${this.execResult.stdout}`))
+          }
+          resolve()
+        }, 1)
+      })
+    })
+  })
 })
