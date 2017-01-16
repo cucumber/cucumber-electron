@@ -7,7 +7,7 @@ class Options {
               'Show the browser window and keep it open after running features')
       .parse(argv)
 
-    this.electronDebug = args.electronDebug
+    this.electronDebug = Boolean(args.electronDebug)
 
     this.cucumberArgv = argv.filter(a => a != '--electron-debug')
   }
