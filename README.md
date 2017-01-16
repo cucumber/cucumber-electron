@@ -1,4 +1,4 @@
-# cucumber-electron 
+# cucumber-electron
 
 Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](https://github.com/electron/electron) renderer process. Scenarios have direct access to both a browser DOM and node.js libraries, so they are fast and easy to debug interactively.
 
@@ -8,7 +8,7 @@ Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](htt
 
 Run it like it was cucumber-js:
 ```
-cucumber-electron ./example/features/hello.feature:2
+cucumber-electron ./features/console_logging.feature:3
 ```
 
 ## Debugging
