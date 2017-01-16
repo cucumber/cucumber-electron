@@ -27,7 +27,7 @@ function createWindow() {
   mainWindow.webContents.session.webRequest.onHeadersReceived({}, (d, c) => {
     for (const header in d.responseHeaders) {
       if (header.toLowerCase() == 'x-frame-options') {
-        delete d[header]
+        delete d.responseHeaders[header]
       }
     }
     c({ cancel: false, responseHeaders: d.responseHeaders })
