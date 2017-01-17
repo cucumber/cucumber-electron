@@ -4,12 +4,20 @@ Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](htt
 
 [![Build Status](https://travis-ci.org/featurist/cucumber-electron.svg?branch=master)](https://travis-ci.org/featurist/cucumber-electron)
 
+## Install
+
+    npm install cucumber-electron --save-dev
+
 ## Usage
 
-Run it like it was cucumber-js:
-```
-cucumber-electron ./features/console_logging.feature:3
-```
+cucumber-electron is a drop-in replacement for cucumber-js, supporting the same
+features and command-line options. You should be able to use it on your project
+without any changes, if you have been using cucumber-js 2.0.0
+
+Run cucumber-electron it like it was cucumber-js, for example:
+
+    ./node_modules/.bin/cucumber-electron ./features/your.feature:123
+
 
 ## Debugging
 
