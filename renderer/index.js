@@ -11,8 +11,8 @@ const Output = require('./output')
 const output = new Output()
 const options = new Options(electron.remote.process.argv)
 
-process.on('unhandledRejection', function(reason) {
-  output.write(reason.message + "\n" + reason.stack)
+process.on('unhandledRejection', function (reason) {
+  output.write(reason.message + '\\n' + reason.stack)
   exitWithCode(3)
 })
 
@@ -28,6 +28,6 @@ try {
   new Cucumber.Cli({ argv, cwd, stdout }).run()
     .then(pass => exitWithCode(pass ? 0 : 1))
 } catch (err) {
-  log(err.stack)
+  output.write(err.stack + '\\n')
   exitWithCode(2)
 }

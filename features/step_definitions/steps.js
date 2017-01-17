@@ -39,7 +39,7 @@ defineSupportCode(function({ Given, When, Then, Before }) {
   Then('the process should not exit', function () {
     return new Promise((resolve, reject) => {
       this.process.on('exit', () => {
-        reject(new Error("The process exited"))
+        reject(new Error('The process exited'))
       })
       setTimeout(() => {
         resolve()
