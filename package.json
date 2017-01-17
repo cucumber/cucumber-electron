@@ -7,8 +7,8 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "test": "cucumber.js && ./bin/cucumber-electron.js",
-    "eslint": "eslint **/*.js "
+    "test": "cucumber.js && ./bin/cucumber-electron.js && eslint **/*.js",
+    "eslint": "eslint **/*.js"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "license": "MIT",
