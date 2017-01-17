@@ -1,26 +1,27 @@
-const path = require('path')
+const { defineSupportCode } = require('cucumber')
 const exec = require('child_process').exec
+const path = require('path')
 const assert = require('assert')
 const fs = require('fs-promise')
 const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
-const { defineSupportCode } = require('cucumber')
-const tempDir = path.resolve(__dirname + '/../../tmp')
 
-defineSupportCode(function({ Given, When, Then, Before }) {
+const tmpDir = path.resolve(path.join(__dirname, '..', '..', 'tmp'))
+const binPath = path.resolve(path.join(__dirname, '..', '..', 'bin'))
 
-  Before(() => rmfr(tempDir).then(() => mkdirp(tempDir)))
+defineSupportCode(function ({ Given, When, Then, Before }) {
+  Before(() => rmfr(tmpDir).then(() => mkdirp(tmpDir)))
 
   Given('the file {filePath:stringInDoubleQuotes} contains:', function (filePath, contents) {
-    const dir = path.resolve(tempDir + '/' + path.dirname(filePath))
-    return mkdirp(dir).then(() => fs.writeFile(tempDir + '/' + filePath, contents))
+    const dir = path.resolve(path.join(tmpDir, path.dirname(filePath)))
+    return mkdirp(dir).then(() => fs.writeFile(path.join(tmpDir, filePath), contents))
   })
 
   When('I run `{command}`', function (command) {
-    const binPath = path.resolve(__dirname + '/../../bin')
     return new Promise(resolve => {
-      command = binPath + '/' + command.replace('cucumber-electron', 'cucumber-electron.js')
-      this.process = exec(command, { cwd: tempDir }, (error, stdout, stderr) => {
+      command = path.join(binPath, command.replace('cucumber-electron', 'cucumber-electron.js'))
+      const cwd = this.tmpDir
+      this.process = exec('node ' + command, { cwd }, (error, stdout, stderr) => {
         this.execResult = { error, stdout, stderr }
       })
       this.process.stdout.on('data', () => resolve())

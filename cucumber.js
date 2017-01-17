@@ -1,3 +1,3 @@
 module.exports = {
-  default: '--format-options \'{"snippetInterface": "promise"}\''
+  'default': '--format-options \'{"snippetInterface": "promise"}\''
 }
