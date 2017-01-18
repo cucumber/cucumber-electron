@@ -7,16 +7,18 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "test": "cucumber.js && ./bin/cucumber-electron.js && eslint **/*.js",
+    "test": "node cucumber.js && node bin/cucumber-electron.js && eslint **/*.js",
     "eslint": "eslint **/*.js"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ansi-to-html": "0.4.2",
+    "ansi-to-html": "0.5.0",
     "commander": "2.9.0",
     "cucumber": "^2.0.0-rc.6",
-    "electron": "1.4.14"
+    "electron": "1.4.14",
+    "colors": "^1.1.2",
+    "string-argv": "0.0.2"
   },
   "repository": {
     "type": "git",
