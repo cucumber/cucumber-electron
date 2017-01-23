@@ -7,7 +7,7 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "test": "cucumber.js && ./bin/cucumber-electron.js && eslint **/*.js",
+    "test": "cucumber-js && node ./bin/cucumber-electron.js && eslint **/*.js",
     "eslint": "eslint **/*.js"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
@@ -16,7 +16,8 @@
     "ansi-to-html": "0.4.2",
     "commander": "2.9.0",
     "cucumber": "^2.0.0-rc.6",
-    "electron": "1.4.14"
+    "electron": "1.4.14",
+    "electron-window": "^0.8.1"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
     "eslint": "^3.13.1",
     "fs-promise": "^1.0.0",
     "mkdirp-promise": "^5.0.0",
-    "rmfr": "^1.0.1"
+    "rmfr": "^1.0.1",
+    "which": "^1.2.12",
+    "witch": "^1.0.0"
   }
 }
