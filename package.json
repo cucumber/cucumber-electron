@@ -28,7 +28,6 @@
     "fs-promise": "^1.0.0",
     "mkdirp-promise": "^5.0.0",
     "rmfr": "^1.0.1",
-    "which": "^1.2.12",
-    "witch": "^1.0.0"
+    "which": "^1.2.12"
   }
 }
