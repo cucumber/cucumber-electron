@@ -25,7 +25,3 @@ app.on('ready', () => {
   // undocumented call in electron-window
   win._loadURLWithArgs(indexPath, {}, () => {})
 })
-
-// process.on('SIGINT', function () {
-//   process.exit(1)
-// })
