@@ -22,27 +22,26 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
   })
 
   When('I run `{command}`', function (command) {
-    const args = path.join(
-      path.resolve(__dirname + '/../../bin'),
-      command.replace(/^cucumber-electron/, 'cucumber-electron.js')
-    ).split(' ')
+    const args = command.split(' ')
+    args[0] = args[0].replace(/^cucumber-electron/, 'cucumber-electron.js')
+    args[0] = path.resolve(__dirname + '/../../bin/' + args[0])
 
     return new Promise((resolve, reject) => {
       this.execResult = { stdout: '', stderr: '', output: '', exitCode: null }
       this.printExecResult = () =>
         `The process exited with code ${this.spawnedProcess.exitCode}\n` +
-        `STDOUT:\n${this.spawnedProcess.stdout}\n` +
-        `STDERR:\n${this.spawnedProcess.stderr}`
+        `STDOUT:\n${this.execResult.stdout}\n` +
+        `STDERR:\n${this.execResult.stderr}`
 
       this.spawnedProcess = spawn('node', args, { cwd: tempDir })
 
       this.spawnedProcess.stdout.on('data', chunk => {
-        this.execResult.stdout += chunk.toString()
-        this.execResult.output += chunk.toString()
+        this.execResult.stdout += chunk.toString('utf-8')
+        this.execResult.output += chunk.toString('utf-8')
       })
       this.spawnedProcess.stderr.on('data', chunk => {
-        this.execResult.stderr += chunk.toString()
-        this.execResult.output += chunk.toString()
+        this.execResult.stderr += chunk.toString('utf-8')
+        this.execResult.output += chunk.toString('utf-8')
       })
       this.spawnedProcess.on('error', e => {
         reject(e)
