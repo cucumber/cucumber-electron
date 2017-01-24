@@ -12,7 +12,7 @@ Feature: Console logging
       const { defineSupportCode } = require('cucumber')
       const assert = require('assert')
 
-      defineSupportCode(function({ When }) {
+      defineSupportCode(function ({ When }) {
         When(/^I log something$/, function () {
           console.log("Logged from a step definition", 123)
         })

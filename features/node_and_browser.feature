@@ -14,8 +14,7 @@ Feature: Node and browser
         const { defineSupportCode } = require('cucumber')
         const assert = require('assert')
 
-        defineSupportCode(function({ Given, When, Then }) {
-
+        defineSupportCode(function ({ Given, When, Then }) {
           Given(/^I am in London$/, function () {
             const element = document.createElement('div')
             element.id = 'weather'
@@ -27,7 +26,7 @@ Feature: Node and browser
             this.weatherElement = document.getElementById('weather')
           })
 
-          Then(/^it should be rainy$/, function() {
+          Then(/^it should be rainy$/, function () {
             assert.equal('Rainy!', this.weatherElement.innerHTML)
           })
         })

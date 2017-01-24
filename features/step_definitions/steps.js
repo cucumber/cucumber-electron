@@ -9,7 +9,7 @@ const { defineSupportCode } = require('cucumber')
 const { spawn } = require('child_process')
 const tempDir = path.resolve(__dirname + '/../../tmp')
 
-defineSupportCode(function({ Given, When, Then, Before, setDefaultTimeout }) {
+defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
   if (os.platform() === 'win32') {
     setDefaultTimeout(15000)
   }
