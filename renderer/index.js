@@ -17,8 +17,7 @@ process.on('unhandledRejection', function (reason) {
 })
 
 function exitWithCode(code) {
-  if (options.electronDebug) return
-  electron.remote.process.exit(code)
+  if (!options.electronDebug) electron.remote.process.exit(code)
 }
 
 try {

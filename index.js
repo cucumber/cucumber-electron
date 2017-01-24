@@ -6,8 +6,10 @@ app.commandLine.appendSwitch('--disable-http-cache')
 const Options = require('./cli/options')
 const options = new Options(process.argv)
 
+let win
+
 app.on('ready', () => {
-  const win = window.createWindow({
+  win = window.createWindow({
     height: 800,
     width: 600,
     focusable: options.electronDebug,
@@ -24,6 +26,6 @@ app.on('ready', () => {
   win._loadURLWithArgs(indexPath, {}, () => {})
 })
 
-process.on('SIGINT', function () {
-  process.exit(1)
-})
+// process.on('SIGINT', function () {
+//   process.exit(1)
+// })

@@ -1,13 +1,12 @@
 const os = require('os')
 const path = require('path')
-const childProcess = require('child_process')
 const assert = require('assert')
 const fs = require('fs-promise')
 const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
 const { defineSupportCode } = require('cucumber')
 
-const exec = childProcess.exec
+const { spawn } = require('child_process')
 const tempDir = path.resolve(__dirname + '/../../tmp')
 
 defineSupportCode(function({ Given, When, Then, Before, setDefaultTimeout }) {
@@ -23,20 +22,40 @@ defineSupportCode(function({ Given, When, Then, Before, setDefaultTimeout }) {
   })
 
   When('I run `{command}`', function (command) {
-    const binPath = path.resolve(__dirname + '/../../bin')
-    return new Promise(resolve => {
-      command = path.join(binPath, command.replace('cucumber-electron', 'cucumber-electron.js'))
-      this.process = exec('node ' + command, { cwd: tempDir }, (error, stdout, stderr) => {
-        this.execResult = { error, stdout, stderr }
+    const args = path.join(
+      path.resolve(__dirname + '/../../bin'),
+      command.replace(/^cucumber-electron/, 'cucumber-electron.js')
+    ).split(' ')
+
+    return new Promise((resolve, reject) => {
+      this.execResult = { stdout: '', stderr: '', output: '', exitCode: null }
+      this.printExecResult = () =>
+        `The process exited with code ${this.spawnedProcess.exitCode}\n` +
+        `STDOUT:\n${this.spawnedProcess.stdout}\n` +
+        `STDERR:\n${this.spawnedProcess.stderr}`
+
+      this.spawnedProcess = spawn('node', args, { cwd: tempDir })
+
+      this.spawnedProcess.stdout.on('data', chunk => {
+        this.execResult.stdout += chunk.toString()
+        this.execResult.output += chunk.toString()
       })
-      this.process.stdout.on('data', () => resolve())
+      this.spawnedProcess.stderr.on('data', chunk => {
+        this.execResult.stderr += chunk.toString()
+        this.execResult.output += chunk.toString()
+      })
+      this.spawnedProcess.on('error', e => {
+        reject(e)
+      })
+      this.spawnedProcess.on('exit', code => this.execResult.exitCode = code)
+      resolve()
     })
   })
 
   Then('the process should exit with code {exitCode:int}', function (exitCode) {
     return new Promise(resolve => {
-      this.process.on('exit', () => {
-        assert.equal(this.process.exitCode, exitCode)
+      this.spawnedProcess.on('exit', () => {
+        assert.equal(this.spawnedProcess.exitCode, exitCode, this.printExecResult())
         resolve()
       })
     })
@@ -44,30 +63,34 @@ defineSupportCode(function({ Given, When, Then, Before, setDefaultTimeout }) {
 
   Then('the process should not exit', function () {
     return new Promise((resolve, reject) => {
-      this.process.on('exit', () => {
-        reject(new Error('The process exited'))
-      })
       setTimeout(() => {
+        const exitCode = this.spawnedProcess.exitCode
         if (os.platform() === 'win32') {
-          exec('taskkill /pid ' + this.process.pid + ' /T /F')
+          spawn('taskkill' ['/pid', this.spawnedProcess.pid, '/T', '/F'])
         } else {
-          this.process.kill('SIGINT')
-          this.process.kill('SIGTERM')
+          // +1 because we are spawning node, which is the parent process
+          // https://github.com/nodejs/node/issues/2098
+          process.kill(this.spawnedProcess.pid + 1)
         }
-        resolve()
+        if (exitCode === null) {
+          resolve()
+        } else {
+          reject('The process exited unexpectedly\n' + this.printExecResult())
+        }
       }, 500)
     })
   })
 
   Then('the output should include:', function (string) {
     return new Promise((resolve, reject) => {
-      this.process.on('exit', () => {
+      this.spawnedProcess.on('exit', () => {
         setTimeout(() => {
           if (this.execResult.stdout.indexOf(string) == -1) {
-            reject(new Error(`Expected stdout to include:\n${string}\nActual stdout:\n${this.execResult.stdout}`))
+            reject(new Error(`Expected stdout to include:\n${string}\n` +
+              this.printExecResult()))
           }
           resolve()
-        }, 1)
+        }, 10)
       })
     })
   })
