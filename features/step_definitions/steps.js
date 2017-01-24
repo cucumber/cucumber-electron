@@ -65,7 +65,7 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
       setTimeout(() => {
         const exitCode = this.spawnedProcess.exitCode
         if (os.platform() === 'win32') {
-          spawn('taskkill' ['/pid', this.spawnedProcess.pid, '/T', '/F'])
+          spawn('taskkill', ['/pid', this.spawnedProcess.pid, '/T', '/F'])
         } else {
           // +1 because we are spawning node, which is the parent process
           // https://github.com/nodejs/node/issues/2098
