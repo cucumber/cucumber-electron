@@ -36,12 +36,12 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
       this.spawnedProcess = spawn('node', args, { cwd: tempDir })
 
       this.spawnedProcess.stdout.on('data', chunk => {
-        this.execResult.stdout += chunk.toString('utf-8')
-        this.execResult.output += chunk.toString('utf-8')
+        this.execResult.stdout += chunk.toString()
+        this.execResult.output += chunk.toString()
       })
       this.spawnedProcess.stderr.on('data', chunk => {
-        this.execResult.stderr += chunk.toString('utf-8')
-        this.execResult.output += chunk.toString('utf-8')
+        this.execResult.stderr += chunk.toString()
+        this.execResult.output += chunk.toString()
       })
       this.spawnedProcess.on('error', e => {
         reject(e)
