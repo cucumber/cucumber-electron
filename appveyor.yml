@@ -1,5 +1,3 @@
-build: off
-
 install:
   - ps: Install-Product node LTS
   - npm install npm
