@@ -4,6 +4,7 @@ const assert = require('assert')
 const fs = require('fs-promise')
 const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
+const colors = require('colors')
 const { defineSupportCode } = require('cucumber')
 
 const { spawn } = require('child_process')
@@ -29,9 +30,15 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
     return new Promise((resolve, reject) => {
       this.execResult = { stdout: '', stderr: '', output: '', exitCode: null }
       this.printExecResult = () =>
+        '------------------------------------\n' +
         `The process exited with code ${this.spawnedProcess.exitCode}\n` +
+        '------------------------------------\n' +
+        `OUTPUT:\n${this.execResult.output}\n` +
+        '------------------------------------\n' +
         `STDOUT:\n${this.execResult.stdout}\n` +
-        `STDERR:\n${this.execResult.stderr}`
+        '------------------------------------\n' +
+        `STDERR:\n${this.execResult.stderr}\n` +
+        '------------------------------------\n'
 
       this.spawnedProcess = spawn('node', args, { cwd: tempDir })
 
@@ -83,9 +90,10 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
   Then('the output should include:', function (string) {
     return new Promise((resolve, reject) => {
       this.spawnedProcess.on('exit', () => {
+        const output = colors.strip(this.execResult.output)
         setTimeout(() => {
-          if (this.execResult.stdout.indexOf(string) == -1) {
-            reject(new Error(`Expected stdout to include:\n${string}\n` +
+          if (output.indexOf(string) == -1) {
+            reject(new Error(`Expected output to include:\n${string}\n` +
               this.printExecResult()))
           }
           resolve()
