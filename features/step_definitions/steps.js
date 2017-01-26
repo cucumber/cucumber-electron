@@ -92,13 +92,11 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
       this.spawnedProcess.on('exit', () => {
         const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
         const normalisedActualOutput = colors.strip(this.execResult.output).replace('\r\n', '\n')
-        setTimeout(() => {
-          if (normalisedActualOutput.indexOf(normalisedExpectedOutput) == -1) {
-            reject(new Error(`Expected output to include:\n${normalisedExpectedOutput}\n` +
-              this.printExecResult()))
-          }
-          resolve()
-        }, 10)
+        if (normalisedActualOutput.indexOf(normalisedExpectedOutput) == -1) {
+          reject(new Error(`Expected output to include:\n${normalisedExpectedOutput}\n` +
+            this.printExecResult()))
+        }
+        resolve()
       })
     })
   })
