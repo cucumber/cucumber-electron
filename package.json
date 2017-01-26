@@ -24,6 +24,7 @@
     "url": "git://github.com/featurist/cucumber-electron.git"
   },
   "devDependencies": {
+    "colors": "^1.1.2",
     "eslint": "^3.13.1",
     "fs-promise": "^1.0.0",
     "mkdirp-promise": "^5.0.0",
