@@ -87,13 +87,14 @@ defineSupportCode(function ({ Given, When, Then, Before, setDefaultTimeout }) {
     })
   })
 
-  Then('the output should include:', function (string) {
+  Then('the output should include:', function (expectedOutput) {
     return new Promise((resolve, reject) => {
       this.spawnedProcess.on('exit', () => {
-        const output = colors.strip(this.execResult.output)
+        const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
+        const normalisedActualOutput = colors.strip(this.execResult.output).replace('\r\n', '\n')
         setTimeout(() => {
-          if (output.indexOf(string) == -1) {
-            reject(new Error(`Expected output to include:\n${string}\n` +
+          if (normalisedActualOutput.indexOf(normalisedExpectedOutput) == -1) {
+            reject(new Error(`Expected output to include:\n${normalisedActualOutput}\n` +
               this.printExecResult()))
           }
           resolve()
