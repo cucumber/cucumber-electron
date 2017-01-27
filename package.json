@@ -28,7 +28,6 @@
     "eslint": "^3.13.1",
     "fs-promise": "^1.0.0",
     "mkdirp-promise": "^5.0.0",
-    "rmfr": "^1.0.1",
-    "which": "^1.2.12"
+    "rmfr": "^1.0.1"
   }
 }
