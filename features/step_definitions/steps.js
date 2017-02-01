@@ -47,11 +47,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     return this.assertOutputIncludes(expectedOutput)
   })
 
-  Then('stdout should include {arg1:stringInDoubleQuotes}', function (expectedOutput) {
+  Then('stdout should include {expectedOutput:stringInDoubleQuotes}', function (expectedOutput) {
     return this.assertStdoutIncludes(expectedOutput)
   })
 
-  Then('stderr should include {arg1:stringInDoubleQuotes}', function (expectedOutput) {
+  Then('stderr should include {expectedOutput:stringInDoubleQuotes}', function (expectedOutput) {
     return this.assertStderrIncludes(expectedOutput)
   })
 })
