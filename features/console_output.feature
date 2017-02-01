@@ -29,5 +29,5 @@ Feature: Console output
     And stdout should include "[ [Date: 2000-01-01T00:00:00.000Z] ]"
     And stdout should include "[ [Error: oops] ]"
     And stdout should include "[ <body /> ]"
-    And stdout should include "[ [TextNode:banana] ]"
-    And stdout should include "[ { x: [TextNode:apple] } ]"
+    And stdout should include "[ [TextNode: banana] ]"
+    And stdout should include "[ { x: [TextNode: apple] } ]"

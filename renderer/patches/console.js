@@ -14,7 +14,7 @@ function ipcSafe(arg) {
   } else if (arg.nodeType === 1 && typeof arg.tagName === 'string') {
     return `<${arg.tagName.toLowerCase()} />`
   } else if (arg.nodeType === 3 && typeof arg.wholeText === 'string') {
-    return `[TextNode:${arg.wholeText}]`
+    return `[TextNode: ${arg.wholeText}]`
   } else if (arg instanceof Error) {
     return `[${arg.toString()}]`
   } else if (arg instanceof Date) {
