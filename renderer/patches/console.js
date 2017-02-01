@@ -7,7 +7,11 @@ const localConsole = console
 global.console = {}
 
 function ipcSafe(arg) {
-  if (arg.nodeType === 1 && typeof arg.tagName === 'string') {
+  if (typeof arg === 'undefined') {
+    return '[undefined]'
+  } else if (arg === null) {
+    return '[null]'
+  } else if (arg.nodeType === 1 && typeof arg.tagName === 'string') {
     return `<${arg.tagName.toLowerCase()} />`
   } else if (arg.nodeType === 3 && typeof arg.wholeText === 'string') {
     return `[TextNode:${arg.wholeText}]`
