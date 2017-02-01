@@ -94,11 +94,8 @@ class CucumberElectronWorld {
   }
 
   assertProcessExitedWithCode(expectedExitCode) {
-    return new Promise(resolve => {
-      this.spawnedProcess.on('exit', () => {
-        assert.equal(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
-        resolve()
-      })
+    return this.ensureProcessHasExited().then(() => {
+      assert.equal(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
     })
   }
 
