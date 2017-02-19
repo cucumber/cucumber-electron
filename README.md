@@ -21,5 +21,5 @@ Run cucumber-electron it like it was cucumber-js, for example:
 
 ## Debugging
 
-The `--electron-debug` command line switch shows the browser window and keeps
-it open after all features have finished running.
+The `--electron-debug` command line switch shows a browser window with chrome dev tools and keeps
+the window open after all features have finished running.
