@@ -1,1 +1,1 @@
-./node_modules/.bin/cucumber.js "$@"
+./node_modules/.bin/cucumber.js --tags 'not @only-runs-in-cucumber-electron' "$@"
