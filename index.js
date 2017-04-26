@@ -44,3 +44,9 @@ app.on('ready', () => {
   // undocumented call in electron-window
   win._loadURLWithArgs(indexPath, {}, () => {})
 })
+
+// in debug mode electron window stays open after ctrc-c
+// the code below force quits the window
+app.on('before-quit', function () {
+  app.exit()
+})
