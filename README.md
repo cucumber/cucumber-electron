@@ -6,7 +6,7 @@ Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](htt
 
 ## Install
 
-    npm install cucumber-electron --save-dev
+    npm install electron cucumber-electron --save-dev
 
 ## Usage
 
