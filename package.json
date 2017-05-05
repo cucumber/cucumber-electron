@@ -14,7 +14,6 @@
   "license": "MIT",
   "dependencies": {
     "ansi-to-html": "0.6.0",
-    "commander": "2.9.0",
     "cucumber": "2.0.0-rc.7",
     "electron-window": "0.8.1",
     "gherkin": "4.0.0"

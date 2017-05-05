@@ -1,15 +1,7 @@
-const commander = require('commander')
-
 class Options {
   constructor(argv) {
-    const args = commander
-      .option('--electron-debug',
-              'Show the browser window and keep it open after running features')
-      .parse(argv)
-
-    this.electronDebug = Boolean(args.electronDebug)
-
     this.cucumberArgv = argv.filter(a => a != '--electron-debug')
+    this.electronDebug = argv.length > this.cucumberArgv.length
   }
 }
 
