@@ -1,7 +1,7 @@
 const { defineSupportCode } = require('cucumber')
 
 defineSupportCode(function ({ Given, When, Then }) {
-  Given('the file {filePath:stringInDoubleQuotes} contains:', function (filePath, contents) {
+  Given('the file {stringInDoubleQuotes} contains:', function (filePath, contents) {
     return this.writeFile(filePath, contents)
   })
 
@@ -35,7 +35,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     return this.runCommand(command)
   })
 
-  Then('the process should exit with code {exitCode:int}', function (exitCode) {
+  Then('the process should exit with code {int}', function (exitCode) {
     return this.assertProcessExitedWithCode(exitCode)
   })
 
@@ -47,11 +47,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     return this.assertOutputIncludes(expectedOutput)
   })
 
-  Then('stdout should include {expectedOutput:stringInDoubleQuotes}', function (expectedOutput) {
+  Then('stdout should include {stringInDoubleQuotes}', function (expectedOutput) {
     return this.assertStdoutIncludes(expectedOutput)
   })
 
-  Then('stderr should include {expectedOutput:stringInDoubleQuotes}', function (expectedOutput) {
+  Then('stderr should include {stringInDoubleQuotes}', function (expectedOutput) {
     return this.assertStderrIncludes(expectedOutput)
   })
 })
