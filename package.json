@@ -13,20 +13,20 @@
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ansi-to-html": "^0.6.2",
-    "electron-window": "^0.8.1"
+    "ansi-to-html": "0.6.2",
+    "electron-window": "0.8.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/featurist/cucumber-electron.git"
   },
   "devDependencies": {
-    "colors": "^1.1.2",
-    "cucumber": "^2.0.0-rc.9",
-    "electron": "^1.6.8",
-    "eslint": "^3.15.0",
-    "fs-promise": "^2.0.0",
-    "mkdirp-promise": "^5.0.1",
-    "rmfr": "^1.0.1"
+    "colors": "1.1.2",
+    "cucumber": "2.0.0-rc.9",
+    "electron": "1.7.0",
+    "eslint": "3.19.0",
+    "fs-promise": "2.0.3",
+    "mkdirp-promise": "5.0.1",
+    "rmfr": "1.0.2"
   }
 }
