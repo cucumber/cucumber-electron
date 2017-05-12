@@ -1,6 +1,6 @@
 {
   "name": "cucumber-electron",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Runs cucumber.js in electron",
   "main": "index.js",
   "bin": {
