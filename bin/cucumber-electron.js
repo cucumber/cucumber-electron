@@ -15,7 +15,7 @@ process.stdin.pipe(child.stdin)
 child.stderr.on('data', function (data) {
   var str = data.toString('utf8')
   // Mute irrelevant chromium errors
-  if (str.match(/^\[\d+\:\d+/)) return
+  if (str.match(/^\[\d+:\d+/)) return
   process.stderr.write(data)
 })
 child.on('exit', function (code) { process.exit(code) })

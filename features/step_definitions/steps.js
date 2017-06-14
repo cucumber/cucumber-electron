@@ -11,11 +11,11 @@ defineSupportCode(function ({ Given, When, Then }) {
       'defineSupportCode(function ({ When }) {',
       '  When(\'I run that step\', function() {'
     ]
-    .concat(lines.split('\n').map(line => '    ' + line))
-    .concat([
-      '  })',
-      '})'
-    ]).join('\n')
+      .concat(lines.split('\n').map(line => '    ' + line))
+      .concat([
+        '  })',
+        '})'
+      ]).join('\n')
     return this.writeFile('features/step_definitions/steps.js', contents)
   })
 
