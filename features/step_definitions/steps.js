@@ -19,6 +19,27 @@ defineSupportCode(function ({ Given, When, Then }) {
     return this.writeFile('features/step_definitions/steps.js', contents)
   })
 
+  Given('a web app is running', function () {
+    return this.runWebApp()
+  })
+
+  When('I load the app on different hostnames in two separate frames', function () {
+    return Promise.all([
+      this.loadWebAppInIFrame('http://localhost:8666'),
+      this.loadWebAppInIFrame('http://127.0.0.1:8666')
+    ]).then(frames => {
+      this.frames = frames
+    })
+  })
+
+  Then('they should have independent sessions', function () {
+    return Promise.all(this.frames.map(frame => this.reloadFrame(frame)))
+      .then(() => {
+        this.assertFrameIsInSession(this.frames[0], 1)
+        this.assertFrameIsInSession(this.frames[1], 2)
+      })
+  })
+
   When('I run a scenario with that step', function () {
     const contents = [
       'Feature: With that step',
