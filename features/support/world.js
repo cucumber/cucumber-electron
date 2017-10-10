@@ -80,9 +80,8 @@ class CucumberElectronWorld {
         if (os.platform() === 'win32') {
           spawn('taskkill', ['/pid', this.spawnedProcess.pid, '/T', '/F'])
         } else {
-          // +1 because we are spawning node, which is the parent process
-          // https://github.com/nodejs/node/issues/2098
-          process.kill(this.spawnedProcess.pid + 1)
+          // LOL +2 seems to work for me
+          process.kill(this.spawnedProcess.pid + 2)
         }
         if (exitCode === null) {
           resolve()
