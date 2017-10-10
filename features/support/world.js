@@ -7,7 +7,7 @@ const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
 const colors = require('colors')
 
-const { defineSupportCode } = require('cucumber')
+const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
 
 class CucumberElectronWorld {
   constructor() {
@@ -120,13 +120,11 @@ class CucumberElectronWorld {
   }
 }
 
-defineSupportCode(function ({ setWorldConstructor, setDefaultTimeout, Before }) {
-  if (os.platform() === 'win32') {
-    setDefaultTimeout(15000)
-  }
+if (os.platform() === 'win32') {
+  setDefaultTimeout(15000)
+}
 
-  setWorldConstructor(CucumberElectronWorld)
+setWorldConstructor(CucumberElectronWorld)
 
-  Before(function () { return rmfr(this.tempDir) })
-  Before(function () { return mkdirp(this.tempDir) })
-})
+Before(function () { return rmfr(this.tempDir) })
+Before(function () { return mkdirp(this.tempDir) })
