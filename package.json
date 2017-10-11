@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "colors": "1.1.2",
-    "cucumber": "2.3.1",
-    "electron": "1.7.0",
-    "eslint": "4.0.0",
+    "cucumber": "3.0.4",
+    "electron": "1.7.8",
+    "eslint": "4.8.0",
     "fs-promise": "2.0.3",
     "mkdirp-promise": "5.0.1",
     "rmfr": "1.0.3"

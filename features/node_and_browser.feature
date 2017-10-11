@@ -11,24 +11,22 @@ Feature: Node and browser
         """
     And the file "features/step_definitions/steps.js" contains:
         """
-        const { defineSupportCode } = require('cucumber')
+        const { Given, When, Then } = require('cucumber')
         const assert = require('assert')
 
-        defineSupportCode(function ({ Given, When, Then }) {
-          Given(/^I am in London$/, function () {
-            const element = document.createElement('div')
-            element.id = 'weather'
-            element.innerHTML = 'Rainy!'
-            document.body.appendChild(element)
-          })
+        Given(/^I am in London$/, function () {
+          const element = document.createElement('div')
+          element.id = 'weather'
+          element.innerHTML = 'Rainy!'
+          document.body.appendChild(element)
+        })
 
-          When(/^I check the weather$/, function () {
-            this.weatherElement = document.getElementById('weather')
-          })
+        When(/^I check the weather$/, function () {
+          this.weatherElement = document.getElementById('weather')
+        })
 
-          Then(/^it should be rainy$/, function () {
-            assert.equal('Rainy!', this.weatherElement.innerHTML)
-          })
+        Then(/^it should be rainy$/, function () {
+          assert.equal('Rainy!', this.weatherElement.innerHTML)
         })
         """
 

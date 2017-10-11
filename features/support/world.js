@@ -7,7 +7,7 @@ const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
 const colors = require('colors')
 
-const { defineSupportCode } = require('cucumber')
+const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
 
 class CucumberElectronWorld {
   constructor() {
@@ -80,9 +80,8 @@ class CucumberElectronWorld {
         if (os.platform() === 'win32') {
           spawn('taskkill', ['/pid', this.spawnedProcess.pid, '/T', '/F'])
         } else {
-          // +1 because we are spawning node, which is the parent process
-          // https://github.com/nodejs/node/issues/2098
-          process.kill(this.spawnedProcess.pid + 1)
+          // LOL +2 seems to work for me
+          process.kill(this.spawnedProcess.pid + 2)
         }
         if (exitCode === null) {
           resolve()
@@ -121,13 +120,11 @@ class CucumberElectronWorld {
   }
 }
 
-defineSupportCode(function ({ setWorldConstructor, setDefaultTimeout, Before }) {
-  if (os.platform() === 'win32') {
-    setDefaultTimeout(15000)
-  }
+if (os.platform() === 'win32') {
+  setDefaultTimeout(15000)
+}
 
-  setWorldConstructor(CucumberElectronWorld)
+setWorldConstructor(CucumberElectronWorld)
 
-  Before(function () { return rmfr(this.tempDir) })
-  Before(function () { return mkdirp(this.tempDir) })
-})
+Before(function () { return rmfr(this.tempDir) })
+Before(function () { return mkdirp(this.tempDir) })

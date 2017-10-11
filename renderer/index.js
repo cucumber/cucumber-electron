@@ -1,4 +1,3 @@
-require('./patches/gherkin')
 require('./patches/console')
 require('./keyboard/bindings')
 
