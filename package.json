@@ -13,7 +13,7 @@
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ansi-to-html": "0.6.2",
+    "ansi-to-html": "0.6.3",
     "electron-window": "0.8.1"
   },
   "repository": {
@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "colors": "1.1.2",
-    "cucumber": "3.0.4",
-    "electron": "1.7.8",
-    "eslint": "4.8.0",
+    "cucumber": "3.1.0",
+    "electron": "1.7.9",
+    "eslint": "4.12.0",
     "fs-promise": "2.0.3",
     "mkdirp-promise": "5.0.1",
     "rmfr": "1.0.3"
