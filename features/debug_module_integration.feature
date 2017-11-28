@@ -6,4 +6,4 @@ Feature: Debug module integration
       debug('hello %s %o', localStorage.debug, { life: 42, element: document.body })
       """
     When I run a scenario with that step and DEBUG="*"
-    Then stderr should include "gubbins hello * { life: '42', element: '<body />' "
+    Then stderr should include "gubbins hello * { life: 42, element: HTMLBodyElement {} }"
