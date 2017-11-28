@@ -1,8 +1,11 @@
-const originalProcessType = process.type
-try {
-  process.type = 'cucumber-electron'
-  require('debug')
-} catch (e) {
-  // no dependency on debug module
+const electron = require('electron')
+
+if ('DEBUG' in electron.remote.process.env) {
+  const originalProcessType = process.type
+  try {
+    process.type = 'cucumber-electron'
+    require('debug')
+  } catch (e) {
+    process.type = originalProcessType
+  }
 }
-process.type = originalProcessType
