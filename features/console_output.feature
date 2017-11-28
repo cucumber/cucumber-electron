@@ -15,7 +15,7 @@ Feature: Console output
       console.log('[', new Error('oops'), ']')
       console.log('[', document.body, ']')
       console.log('[', document.createTextNode('banana'), ']')
-      console.log('[', { x: document.createTextNode('apple') }, ']')
+      console.log('[', { x: [1, 2, document.createTextNode('apple')] }, ']')
       console.timeEnd()
       """
     When I run a scenario with that step
@@ -30,4 +30,4 @@ Feature: Console output
     And stdout should include "[ [Error: oops] ]"
     And stdout should include "[ <body /> ]"
     And stdout should include "[ [TextNode: banana] ]"
-    And stdout should include "[ { x: [TextNode: apple] } ]"
+    And stdout should include "[ { x: [1, 2, [TextNode: apple]] } ]"
