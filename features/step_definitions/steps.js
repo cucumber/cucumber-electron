@@ -28,6 +28,18 @@ When('I run a scenario with that step', function () {
     })
 })
 
+When('I run a scenario with that step and DEBUG={string}', function (debugEnvironmentValue) {
+  const contents = [
+    'Feature: With that step and DEBUG',
+    '  Scenario: Running that step and DEBUG',
+    '    When I run that step'
+  ].join('\n')
+  return this.writeFile('features/with_that_step_and_debug.feature', contents)
+    .then(() => {
+      return this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { DEBUG: debugEnvironmentValue })
+    })
+})
+
 When('I run `cucumber-electron`', function () {
   return this.runCommand('cucumber-electron')
 })

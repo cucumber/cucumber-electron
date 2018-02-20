@@ -1,4 +1,5 @@
 require('./patches/console')
+require('./patches/debug')
 require('./keyboard/bindings')
 
 const electron = require('electron')

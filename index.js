@@ -6,6 +6,12 @@ app.commandLine.appendSwitch('--disable-http-cache')
 const Options = require('./cli/options')
 const options = new Options(process.argv)
 
+global.mainProcessDebug = function ({ namespaces, args }) {
+  const debug = require('debug')
+  const log = debug(namespaces)
+  log(...args)
+}
+
 let win
 
 app.on('ready', () => {

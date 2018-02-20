@@ -25,7 +25,7 @@ class CucumberElectronWorld {
     })
   }
 
-  runCommand(command) {
+  runCommand(command, env) {
     const args = command.split(' ')
     args[0] = args[0].replace(/^cucumber-electron/, 'cucumber-electron.js')
     args[0] = path.resolve(__dirname + '/../../bin/' + args[0])
@@ -43,7 +43,8 @@ class CucumberElectronWorld {
         `STDERR:\n${this.execResult.stderr}\n` +
         '------------------------------------\n'
 
-      this.spawnedProcess = spawn('node', args, { cwd: this.tempDir })
+      const childEnv = Object.assign(process.env, env)
+      this.spawnedProcess = spawn('node', args, { cwd: this.tempDir, env: childEnv })
 
       this.spawnedProcess.stdout.on('data', chunk => {
         this.execResult.stdout += chunk.toString()
