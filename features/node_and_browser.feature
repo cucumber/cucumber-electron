@@ -35,5 +35,5 @@ Feature: Node and browser
     Then the process should exit with code 0
 
   Scenario: Debugging a scenario with node.js and browser step definitions
-    When I run `cucumber-electron --electron-debug`
+    When I run `cucumber-electron --interactive`
     Then the process should not exit
