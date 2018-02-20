@@ -32,8 +32,8 @@ When('I run `cucumber-electron`', function () {
   return this.runCommand('cucumber-electron')
 })
 
-When('I run `cucumber-electron --electron-debug`', function () {
-  return this.runCommand('cucumber-electron --electron-debug')
+When('I run `cucumber-electron --interactive`', function () {
+  return this.runCommand('cucumber-electron --interactive')
 })
 
 When('I run `cucumber-electron --tags @a`', function () {

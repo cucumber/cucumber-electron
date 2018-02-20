@@ -19,7 +19,7 @@ Run cucumber-electron it like it was cucumber-js, for example:
     ./node_modules/.bin/cucumber-electron ./features/your.feature:123
 
 
-## Debugging
+## Interactive Debugging
 
-The `--electron-debug` command line switch shows a browser window with chrome dev tools and keeps
+The `--interactive` (or `-i`) command line switch shows a browser window with chrome dev tools and keeps
 the window open after all features have finished running.
