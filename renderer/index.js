@@ -28,6 +28,7 @@ ipc.on('run-cucumber', () => {
     const stdout = new Output()
     new Cucumber.Cli({ argv, cwd, stdout }).run()
       .then(result => {
+        // cucumber-js 4 changes the boolean result to an object
         const resultIsObject = typeof result === 'object'
         const success = resultIsObject ? result.success : !!result
         const exitCode = success ? 0 : 1
