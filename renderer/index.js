@@ -27,7 +27,15 @@ ipc.on('run-cucumber', () => {
     const cwd = process.cwd()
     const stdout = new Output()
     new Cucumber.Cli({ argv, cwd, stdout }).run()
-      .then(pass => exitWithCode(pass ? 0 : 1))
+      .then(result => {
+        // cucumber-js 4 changes the boolean result to an object
+        const resultIsObject = typeof result === 'object'
+        const success = resultIsObject ? result.success : !!result
+        const exitCode = success ? 0 : 1
+        // sadly, we have to exit immediately, we can't wait for the event loop
+        // to drain https://github.com/electron/electron/issues/2358
+        exitWithCode(exitCode)
+      })
   } catch (err) {
     output.write(err.stack + '\\n')
     exitWithCode(2)
