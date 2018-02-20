@@ -56,6 +56,10 @@ When('I run `cucumber-electron --tags @b`', function () {
   return this.runCommand('cucumber-electron --tags @b')
 })
 
+When('I run `cucumber-electron --help`', function () {
+  return this.runCommand('cucumber-electron --help')
+})
+
 Then('the process should exit with code {int}', function (exitCode) {
   return this.assertProcessExitedWithCode(exitCode)
 })
