@@ -6,13 +6,11 @@ Given('the file {string} contains:', function (filePath, contents) {
 
 Given('a step definition includes the lines:', function (lines) {
   const contents = [
-    'const { defineSupportCode } = require(\'cucumber\')',
-    'defineSupportCode(function ({ When }) {',
-    '  When(\'I run that step\', function() {'
+    'const { When } = require(\'cucumber\')',
+    'When(\'I run that step\', function() {'
   ]
     .concat(lines.split('\n').map(line => '    ' + line))
     .concat([
-      '  })',
       '})'
     ]).join('\n')
   return this.writeFile('features/step_definitions/steps.js', contents)
