@@ -20,7 +20,9 @@ app.on('ready', () => {
     width: 1000,
     focusable: options.electronDebug,
     show: false,
-    webPreferences: { webSecurity: false }
+    webPreferences: {
+      webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1'
+    }
   })
 
   win.webContents.once('did-finish-load', () => {
