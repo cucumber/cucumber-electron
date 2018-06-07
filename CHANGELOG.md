@@ -10,6 +10,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 <!-- Releases -->
 
+### [2.5.0](https://github.com/cucumber/cucumber-electron/compare/v2.4.0...v2.5.0)
+
+* Only disable web security when the environment variable CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY is set to '1'
+
 ### [2.4.0](https://github.com/cucumber/cucumber-electron/compare/v2.3.1...v2.4.0)
 
 * Added CLI `--help` option.
