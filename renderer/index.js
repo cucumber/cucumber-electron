@@ -11,7 +11,9 @@ const Output = require('./output')
 const output = new Output()
 const options = new Options(electron.remote.process.argv)
 
-const { ipcRenderer: ipc } = require('electron')
+const { ipcRenderer: ipc } = electron
+
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 
 process.on('unhandledRejection', function (reason) {
   output.write(reason.message + '\\n' + reason.stack)
