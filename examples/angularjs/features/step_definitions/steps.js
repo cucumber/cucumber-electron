@@ -30,8 +30,10 @@ Before(async function () {
   this.doc = this.win.document
 })
 
-After(function () {
-  // this.app.frameElement.remove()
+After(function (evt) {
+  if (evt.result.status === 'passed') {
+    document.body.removeChild(document.body.querySelector('iframe'))
+  }
 })
 
 When("you add the task {string}", async function (task) {
