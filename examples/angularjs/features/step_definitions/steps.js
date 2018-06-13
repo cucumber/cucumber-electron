@@ -41,6 +41,6 @@ When("you add the task {string}", async function (task) {
 })
 
 Then("the list of active tasks contains:", function (table) {
-  const actualList = [...this.doc.querySelectorAll(".todo-list li")].map(node => node.innerText.trim())
-  assert.deepEqual(table.raw(), [actualList])
+  const actualList = [...this.doc.querySelectorAll(".todo-list li")].map(node => [node.innerText.trim()])
+  assert.deepEqual(table.raw(), actualList)
 })
