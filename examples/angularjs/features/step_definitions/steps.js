@@ -22,9 +22,12 @@ function angularAppMounted(window) {
 
 Before(async function () {
   const iframe = await mountIframe(__dirname + "/../../index.html")
-  await angularAppMounted(iframe.contentWindow)
-  this.browser = createBrowser(iframe.contentWindow.document)
-  this.doc = iframe.contentWindow.document
+  this.win = iframe.contentWindow;
+  this.win.localStorage.removeItem('todos-angularjs')
+
+  await angularAppMounted(this.win)
+  this.browser = createBrowser(this.win.document)
+  this.doc = this.win.document
 })
 
 After(function () {
