@@ -25,7 +25,7 @@ In interactive mode, just press CMD-R (MacOS) or CTRL-R (Windows) to re-run.
 ## How it works
 
 Cucumber-Electron makes a browser environment available from Node.js. The step definitions
-mount the app in an iframe, then uses [browser-monkey](https://github.com/featurist/browser-monkey) 
+mount the app in an iframe, then use [browser-monkey](https://github.com/featurist/browser-monkey) 
 to simulate a user adding TODOs. Browser-monkey makes it easier to simulate DOM events than doing
 it "by hand".
 

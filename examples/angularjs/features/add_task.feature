@@ -5,7 +5,7 @@ Feature: Add Task
     Then the list of active tasks contains:
       | buy milk |
 
-  Scenario: Add two task
+  Scenario: Add two tasks
     When you add the task "buy milk"
     When you add the task "get kids"
     Then the list of active tasks contains:
