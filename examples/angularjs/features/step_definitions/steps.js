@@ -1,14 +1,14 @@
-const assert = require("assert")
+const assert = require('assert')
 const createBrowser = require('browser-monkey/create')
 
-const {Before, After, When, Then} = require("cucumber")
+const { Before, After, When, Then } = require('cucumber')
 
 Before(async function () {
   // TodoMVC stores TODOs in the browser's localStorage, so we delete that to have a clean slate before each scenario.
   localStorage.removeItem('todos-angularjs')
 
   // The path to the TODO-MVC index.html page, relative to this file's directory
-  const indexHtml = __dirname + "/../../todomvc/index.html";
+  const indexHtml = __dirname + '/../../todomvc/index.html'
 
   // Our index.html needs to be loaded into an empty window, and this is why we're using an iframe.
   // (A more decoupled app could be loaded straight into the current window.document without an iframe - this would be faster).
@@ -29,22 +29,22 @@ After(function (evt) {
   }
 })
 
-When("you add the task {string}", async function (task) {
+When('you add the task {string}', async function (task) {
   const input = this.browser.find('.new-todo')
   await input.typeIn(task)
   await input.submit()
 })
 
-Then("the list of active tasks contains:", function (table) {
-  const actualList = [...this.doc.querySelectorAll(".todo-list li")].map(node => [node.innerText.trim()])
+Then('the list of active tasks contains:', function (table) {
+  const actualList = [...this.doc.querySelectorAll('.todo-list li')].map(node => [node.innerText.trim()])
   assert.deepEqual(table.raw(), actualList)
 })
 
 function mountIframe(path) {
   return new Promise(resolve => {
-    const iframe = document.createElement("iframe")
-    iframe.width = "100%"
-    iframe.height = "100%"
+    const iframe = document.createElement('iframe')
+    iframe.width = '100%'
+    iframe.height = '100%'
     // Wait until the iframe has loaded the HTML
     iframe.onload = () => resolve(iframe)
     iframe.src = path

@@ -18,8 +18,10 @@ class CucumberElectronWorld {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
     return mkdirp(dir).then(() => {
       return new Promise((resolve, reject) => {
-        fs.writeFile(path.join(this.tempDir, filePath), contents, err =>
-          err ? reject(err) : resolve(err)
+        fs.writeFile(
+          path.join(this.tempDir, filePath),
+          contents,
+          err => (err ? reject(err) : resolve(err))
         )
       })
     })
@@ -44,7 +46,10 @@ class CucumberElectronWorld {
         '------------------------------------\n'
 
       const childEnv = Object.assign(process.env, env)
-      this.spawnedProcess = spawn('node', args, { cwd: this.tempDir, env: childEnv })
+      this.spawnedProcess = spawn('node', args, {
+        cwd: this.tempDir,
+        env: childEnv
+      })
 
       this.spawnedProcess.stdout.on('data', chunk => {
         this.execResult.stdout += chunk.toString()
@@ -57,7 +62,7 @@ class CucumberElectronWorld {
       this.spawnedProcess.on('error', e => {
         reject(e)
       })
-      this.spawnedProcess.on('exit', code => this.execResult.exitCode = code)
+      this.spawnedProcess.on('exit', code => (this.execResult.exitCode = code))
       resolve()
     })
   }
@@ -95,17 +100,25 @@ class CucumberElectronWorld {
 
   assertProcessExitedWithCode(expectedExitCode) {
     return this.ensureProcessHasExited().then(() => {
-      assert.equal(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
+      assert.equal(
+        this.spawnedProcess.exitCode,
+        expectedExitCode,
+        this.printExecResult()
+      )
     })
   }
 
   assertOutputIncludes(expectedOutput, stream = 'output') {
     return this.ensureProcessHasExited().then(() => {
       const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
-      const normalisedActualOutput = colors.strip(this.execResult[stream]).replace('\r\n', '\n')
+      const normalisedActualOutput = colors
+        .strip(this.execResult[stream])
+        .replace('\r\n', '\n')
       if (normalisedActualOutput.indexOf(normalisedExpectedOutput) == -1) {
-        throw new Error(`Expected ${stream} to include:\n${normalisedExpectedOutput}\n` +
-          this.printExecResult())
+        throw new Error(
+          `Expected ${stream} to include:\n${normalisedExpectedOutput}\n` +
+            this.printExecResult()
+        )
       }
     })
   }
@@ -121,11 +134,13 @@ class CucumberElectronWorld {
   }
 }
 
-if (os.platform() === 'win32') {
-  setDefaultTimeout(15000)
-}
+setDefaultTimeout(15000)
 
 setWorldConstructor(CucumberElectronWorld)
 
-Before(function () { return rmfr(this.tempDir) })
-Before(function () { return mkdirp(this.tempDir) })
+Before(function () {
+  return rmfr(this.tempDir)
+})
+Before(function () {
+  return mkdirp(this.tempDir)
+})
