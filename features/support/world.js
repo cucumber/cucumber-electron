@@ -27,7 +27,7 @@ class CucumberElectronWorld {
     })
   }
 
-  runCommand(command, env) {
+  runCommand(command, { env } = { env: {} }) {
     const args = command.split(' ')
     args[0] = args[0].replace(/^cucumber-electron/, 'cucumber-electron.js')
     args[0] = path.resolve(__dirname + '/../../bin/' + args[0])
@@ -130,6 +130,14 @@ class CucumberElectronWorld {
     // On windows, everything goes out of stderr. Electron.exe needs a shim, or something
     const errorStream = os.platform() === 'win32' ? 'stdout' : 'stderr'
     return this.assertOutputIncludes(expectedOutput, errorStream)
+  }
+
+  assertOutputIncludesColours() {
+    return this.ensureProcessHasExited().then(() => {
+      if (this.execResult.stdout.indexOf('\x1B[39m') === -1) {
+        throw new Error('Expected coloured output')
+      }
+    })
   }
 }
 

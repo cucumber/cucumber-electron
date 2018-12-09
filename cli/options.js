@@ -1,8 +1,17 @@
 class Options {
   constructor(argv) {
-    this.cucumberArgv = argv.filter(a => a != '--interactive' && a != '-i' && a != '--interactive')
-    this.electronDebug = argv.length > this.cucumberArgv.length
+    this.interactiveMode = Boolean(argv.find(isInteractiveSwitch))
+    this.isTTY = Boolean(argv.find(isTTYSwitch))
+    this.cucumberArgv = argv.filter(arg => !isInteractiveSwitch(arg) && !isTTYSwitch(arg))
   }
+}
+
+function isInteractiveSwitch(arg) {
+  return arg === '--interactive' || arg === '-i'
+}
+
+function isTTYSwitch(arg) {
+  return arg === '--TTY'
 }
 
 module.exports = Options
