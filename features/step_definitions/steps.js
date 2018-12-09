@@ -1,5 +1,4 @@
 const { Given, When, Then } = require('cucumber')
-const colors = require('colors/safe')
 
 Given('the file {string} contains:', function (filePath, contents) {
   return this.writeFile(filePath, contents)
