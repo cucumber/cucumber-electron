@@ -36,7 +36,7 @@ When('I run a scenario with that step and DEBUG={string}', function (debugEnviro
   ].join('\n')
   return this.writeFile('features/with_that_step_and_debug.feature', contents)
     .then(() => {
-      return this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { DEBUG: debugEnvironmentValue })
+      return this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { env: { DEBUG: debugEnvironmentValue } })
     })
 })
 
@@ -60,6 +60,10 @@ When('I run `cucumber-electron --help`', function () {
   return this.runCommand('cucumber-electron --help')
 })
 
+When('I run `cucumber-electron` in a TTY terminal', function () {
+  return this.runCommand('cucumber-electron', { env: { CUCUMBER_ELECTRON_FORCE_TTY: 'true' } })
+})
+
 Then('the process should exit with code {int}', function (exitCode) {
   return this.assertProcessExitedWithCode(exitCode)
 })
@@ -78,4 +82,8 @@ Then('stdout should include {string}', function (expectedOutput) {
 
 Then('stderr should include {string}', function (expectedOutput) {
   return this.assertStderrIncludes(expectedOutput)
+})
+
+Then('I should see coloured output', function () {
+  return this.assertOutputIncludesColours()
 })

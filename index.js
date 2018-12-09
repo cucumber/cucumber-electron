@@ -18,7 +18,7 @@ app.on('ready', () => {
   win = window.createWindow({
     height: 900,
     width: 1000,
-    focusable: options.electronDebug,
+    focusable: options.interactiveMode,
     show: false,
     webPreferences: {
       webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1'
@@ -26,7 +26,7 @@ app.on('ready', () => {
   })
 
   win.webContents.once('did-finish-load', () => {
-    if (options.electronDebug) {
+    if (options.interactiveMode) {
       win.show()
       win.webContents.openDevTools()
       win.webContents.on('devtools-opened', () => {
@@ -44,7 +44,7 @@ app.on('ready', () => {
     }
   })
 
-  if (!options.electronDebug && process.platform === 'darwin') {
+  if (!options.interactiveMode && process.platform === 'darwin') {
     app.dock.hide()
   }
 

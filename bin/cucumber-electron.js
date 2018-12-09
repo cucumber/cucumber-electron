@@ -18,6 +18,9 @@ function showHelp() {
 
 function runCucumberInRendererProcess() {
   args.unshift(path.resolve(path.join(__dirname, '../index.js')))
+  if (process.stdout.isTTY || process.env.CUCUMBER_ELECTRON_FORCE_TTY === 'true') {
+    args.push('--TTY')
+  }
 
   var child = spawn(electron, args)
   child.stdout.pipe(process.stdout)

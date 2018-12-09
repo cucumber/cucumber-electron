@@ -8,8 +8,8 @@ const Cucumber = require('cucumber')
 const Options = require('../cli/options')
 const Output = require('./output')
 
-const output = new Output()
 const options = new Options(electron.remote.process.argv)
+const output = new Output({ isTTY: options.isTTY })
 
 const { ipcRenderer: ipc } = electron
 
@@ -21,15 +21,14 @@ process.on('unhandledRejection', function (reason) {
 })
 
 function exitWithCode(code) {
-  if (!options.electronDebug) electron.remote.process.exit(code)
+  if (!options.interactiveMode) electron.remote.process.exit(code)
 }
 
 ipc.on('run-cucumber', () => {
   try {
     const argv = options.cucumberArgv
     const cwd = process.cwd()
-    const stdout = new Output()
-    new Cucumber.Cli({ argv, cwd, stdout }).run()
+    new Cucumber.Cli({ argv, cwd, stdout: output }).run()
       .then(result => {
         // cucumber-js 4 changes the boolean result to an object
         const resultIsObject = typeof result === 'object'
