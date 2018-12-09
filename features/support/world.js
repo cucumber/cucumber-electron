@@ -86,15 +86,14 @@ class CucumberElectronWorld {
         if (os.platform() === 'win32') {
           spawn('taskkill', ['/pid', this.spawnedProcess.pid, '/T', '/F'])
         } else {
-          // LOL +2 seems to work for me
-          process.kill(this.spawnedProcess.pid + 2)
+          process.kill(this.spawnedProcess.pid + 1)
         }
         if (exitCode === null) {
           resolve()
         } else {
           reject('The process exited unexpectedly\n' + this.printExecResult())
         }
-      }, 500)
+      }, 1000)
     })
   }
 
