@@ -21,7 +21,9 @@ app.on('ready', () => {
     focusable: options.interactiveMode,
     show: false,
     webPreferences: {
-      webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1'
+      webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1',
+      contextIsolation: false,
+      nodeIntegration: true
     }
   })
 
