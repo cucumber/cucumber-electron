@@ -18,10 +18,8 @@ class CucumberElectronWorld {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
     return mkdirp(dir).then(() => {
       return new Promise((resolve, reject) => {
-        fs.writeFile(
-          path.join(this.tempDir, filePath),
-          contents,
-          err => (err ? reject(err) : resolve(err))
+        fs.writeFile(path.join(this.tempDir, filePath), contents, err =>
+          err ? reject(err) : resolve(err)
         )
       })
     })

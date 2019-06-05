@@ -8,6 +8,7 @@ const options = new Options(process.argv)
 
 global.mainProcessDebug = function ({ namespaces, args }) {
   const debug = require('debug')
+  debug.inspectOpts.colors = process.env.DEBUG_COLORS || options.isTTY
   const log = debug(namespaces)
   log(...args)
 }
