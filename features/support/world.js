@@ -2,10 +2,13 @@ const { spawn } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
+const {promisify} = require('util')
 const assert = require('assert')
 const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
 const colors = require('colors')
+
+const writeFile = promisify(fs.writeFile)
 
 const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
 
@@ -16,15 +19,11 @@ class CucumberElectronWorld {
 
   async writeFile(filePath, contents) {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
-    return mkdirp(dir).then(() => {
-      return new Promise((resolve, reject) => {
-        fs.writeFile(
-          path.join(this.tempDir, filePath),
-          contents,
-          err => (err ? reject(err) : resolve(err))
-        )
-      })
-    })
+    await mkdirp(dir)
+    await writeFile(
+      path.join(this.tempDir, filePath),
+      contents
+    )
   }
 
   async runCommand(command, { env } = { env: {} }) {
@@ -77,7 +76,6 @@ class CucumberElectronWorld {
         })
       })
     }
-    return Promise.resolve()
   }
 
   async assertProcessDidNotExit() {

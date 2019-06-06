@@ -7,7 +7,7 @@ if ('DEBUG' in electron.remote.process.env) {
     const tty = require('tty')
     const originalAtty = tty.isatty
     tty.isatty = fd => {
-      if (fd == process.stderr.fd) {
+      if (fd === process.stderr.fd) {
         return true
       }
       return originalAtty(fd)
