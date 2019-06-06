@@ -14,7 +14,7 @@ class CucumberElectronWorld {
     this.tempDir = path.resolve(__dirname + '/../../tmp')
   }
 
-  writeFile(filePath, contents) {
+  async writeFile(filePath, contents) {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
     return mkdirp(dir).then(() => {
       return new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ class CucumberElectronWorld {
     })
   }
 
-  runCommand(command, { env } = { env: {} }) {
+  async runCommand(command, { env } = { env: {} }) {
     const args = command.split(' ')
     args[0] = args[0].replace(/^cucumber-electron/, 'cucumber-electron.js')
     args[0] = path.resolve(__dirname + '/../../bin/' + args[0])
@@ -48,7 +48,8 @@ class CucumberElectronWorld {
       const childEnv = Object.assign(process.env, env)
       this.spawnedProcess = spawn('node', args, {
         cwd: this.tempDir,
-        env: childEnv
+        env: childEnv,
+        detached: true
       })
 
       this.spawnedProcess.stdout.on('data', chunk => {
@@ -67,7 +68,7 @@ class CucumberElectronWorld {
     })
   }
 
-  ensureProcessHasExited() {
+  async ensureProcessHasExited() {
     if (this.spawnedProcess.exitCode == null) {
       return new Promise(resolve => {
         this.spawnedProcess.on('exit', code => {
@@ -79,65 +80,64 @@ class CucumberElectronWorld {
     return Promise.resolve()
   }
 
-  assertProcessDidNotExit() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const exitCode = this.spawnedProcess.exitCode
-        if (os.platform() === 'win32') {
-          spawn('taskkill', ['/pid', this.spawnedProcess.pid, '/T', '/F'])
-        } else {
-          process.kill(this.spawnedProcess.pid + 1)
-        }
-        if (exitCode === null) {
-          resolve()
-        } else {
-          reject('The process exited unexpectedly\n' + this.printExecResult())
-        }
-      }, 1000)
-    })
+  async assertProcessDidNotExit() {
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    const exitCode = this.spawnedProcess.exitCode
+    if (exitCode === null) {
+      await this.killChild()
+    } else {
+      throw new Error('The process exited unexpectedly\n' + this.printExecResult())
+    }
   }
 
-  assertProcessExitedWithCode(expectedExitCode) {
-    return this.ensureProcessHasExited().then(() => {
-      assert.equal(
-        this.spawnedProcess.exitCode,
-        expectedExitCode,
-        this.printExecResult()
+  async killChild() {
+    if (os.platform() === 'win32') {
+      spawn('taskkill', ['/pid', this.spawnedProcess.pid, '/T', '/F'])
+    } else {
+      // Kill the process and all its children (all processes in the same process group).
+      // See http://man7.org/linux/man-pages/man2/kill.2.html
+      process.kill(-this.spawnedProcess.pid)
+    }
+  }
+
+  async assertProcessExitedWithCode(expectedExitCode) {
+    await this.ensureProcessHasExited()
+    assert.equal(
+      this.spawnedProcess.exitCode,
+      expectedExitCode,
+      this.printExecResult()
+    )
+  }
+
+  async assertOutputIncludes(expectedOutput, stream = 'output') {
+    await this.ensureProcessHasExited()
+    const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
+    const normalisedActualOutput = colors
+      .strip(this.execResult[stream])
+      .replace('\r\n', '\n')
+    if (normalisedActualOutput.indexOf(normalisedExpectedOutput) === -1) {
+      throw new Error(
+        `Expected ${stream} to include:\n${normalisedExpectedOutput}\n` +
+          this.printExecResult()
       )
-    })
+    }
   }
 
-  assertOutputIncludes(expectedOutput, stream = 'output') {
-    return this.ensureProcessHasExited().then(() => {
-      const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
-      const normalisedActualOutput = colors
-        .strip(this.execResult[stream])
-        .replace('\r\n', '\n')
-      if (normalisedActualOutput.indexOf(normalisedExpectedOutput) == -1) {
-        throw new Error(
-          `Expected ${stream} to include:\n${normalisedExpectedOutput}\n` +
-            this.printExecResult()
-        )
-      }
-    })
-  }
-
-  assertStdoutIncludes(expectedOutput) {
+  async assertStdoutIncludes(expectedOutput) {
     return this.assertOutputIncludes(expectedOutput, 'stdout')
   }
 
-  assertStderrIncludes(expectedOutput) {
+  async assertStderrIncludes(expectedOutput) {
     // On windows, everything goes out of stderr. Electron.exe needs a shim, or something
     const errorStream = os.platform() === 'win32' ? 'stdout' : 'stderr'
     return this.assertOutputIncludes(expectedOutput, errorStream)
   }
 
-  assertOutputIncludesColours() {
-    return this.ensureProcessHasExited().then(() => {
-      if (this.execResult.stdout.indexOf('\x1B[39m') === -1) {
-        throw new Error('Expected coloured output')
-      }
-    })
+  async assertOutputIncludesColours() {
+    await this.ensureProcessHasExited()
+    if (this.execResult.stdout.indexOf('\x1B[39m') === -1) {
+      throw new Error('Expected coloured output')
+    }
   }
 }
 
