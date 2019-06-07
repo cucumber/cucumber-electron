@@ -12,9 +12,9 @@ Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](htt
 
 cucumber-electron is a drop-in replacement for cucumber-js, supporting the same
 features and command-line options. You should be able to use it on your project
-without any changes, if you have been using cucumber-js 2.0.0
+without any changes.
 
-Run cucumber-electron it like it was cucumber-js, for example:
+Run cucumber-electron like it was cucumber-js, for example:
 
     ./node_modules/.bin/cucumber-electron ./features/your.feature:123
 
@@ -23,3 +23,5 @@ Run cucumber-electron it like it was cucumber-js, for example:
 
 The `--interactive` (or `-i`) command line switch shows a browser window with chrome dev tools and keeps
 the window open after all features have finished running.
+
+The interactive debugger will halt execution on any `debugger` statements, or breakpoints you have set in chrome dev tools.
