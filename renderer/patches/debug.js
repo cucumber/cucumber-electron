@@ -1,20 +1,22 @@
-const electron = require('electron')
-
-if ('DEBUG' in electron.remote.process.env) {
-  const originalProcessType = process.type
-  try {
-    process.type = 'cucumber-electron'
-    const tty = require('tty')
-    const originalAtty = tty.isatty
-    tty.isatty = fd => {
-      if (fd === process.stderr.fd) {
-        return true
-      }
-      return originalAtty(fd)
+module.exports = function patchDebug({ isTTY }) {
+  function debugInDependencies() {
+    try {
+      require('debug')
+      return true
+    } catch (e) {
+      return false
     }
-  } catch (e) {
-    process.type = originalProcessType
   }
-} else {
-  localStorage.debug = ''
+
+  if (debugInDependencies()) {
+    const originalDebug = require('debug')
+    const cacheKey = Object.keys(require.cache).find(
+      key => require.cache[key].exports == originalDebug
+    )
+    const nodeDebug = require('debug/src/node')
+    if (!('colors' in nodeDebug.inspectOpts) && isTTY) {
+      nodeDebug.inspectOpts.colors = true
+    }
+    require.cache[cacheKey].exports = nodeDebug
+  }
 }

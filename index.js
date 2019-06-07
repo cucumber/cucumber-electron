@@ -8,6 +8,7 @@ const options = new Options(process.argv)
 
 global.mainProcessDebug = function ({ namespaces, args }) {
   const debug = require('debug')
+  debug.inspectOpts.colors = process.env.DEBUG_COLORS || options.isTTY
   const log = debug(namespaces)
   log(...args)
 }
@@ -21,7 +22,9 @@ app.on('ready', () => {
     focusable: options.interactiveMode,
     show: false,
     webPreferences: {
-      webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1'
+      webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1',
+      contextIsolation: false,
+      nodeIntegration: true
     }
   })
 
