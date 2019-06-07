@@ -10,6 +10,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 <!-- Releases -->
 
+### [2.7.0](https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0)
+
+* Support for electron 5 and node 12
+
 ### [2.6.0](https://github.com/cucumber/cucumber-electron/compare/v2.5.0...v2.6.0)
 
 * Fix coloured terminal output when using cucumber-js 5.0
