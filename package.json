@@ -1,6 +1,6 @@
 {
   "name": "cucumber-electron",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Runs cucumber.js in electron",
   "main": "index.js",
   "bin": {
@@ -11,6 +11,10 @@
     "eslint": "eslint '**/*.js'"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
+  "contributors": [
+    "Josh Chisholm <joshuachisholm@gmail.com>",
+    "Aslak Hellesøy <aslak.hellesoy@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "ansi-to-html": "^0.6.11",
