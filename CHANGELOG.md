@@ -10,6 +10,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 <!-- Releases -->
 
+### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v2.7.0...master)
+
+* Change package name from `cucumber-electron` to `@cucumber/electron`
+
 ### [2.7.0](https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0)
 
 * Support for electron 5 and node 12
