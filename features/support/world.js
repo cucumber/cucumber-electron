@@ -4,11 +4,12 @@ const fs = require('fs')
 const os = require('os')
 const { promisify } = require('util')
 const assert = require('assert')
-const mkdirp = require('mkdirp-promise')
 const rmfr = require('rmfr')
 const colors = require('colors')
 
 const writeFile = promisify(fs.writeFile)
+const rmdir = promisify(fs.rmdir)
+const mkdir = promisify(fs.mkdir)
 
 const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
 
@@ -19,7 +20,7 @@ class CucumberElectronWorld {
 
   async writeFile(filePath, contents) {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
-    await mkdirp(dir)
+    await mkdir(dir, { recursive: true })
     await writeFile(
       path.join(this.tempDir, filePath),
       contents
@@ -143,9 +144,9 @@ setDefaultTimeout(15000)
 
 setWorldConstructor(CucumberElectronWorld)
 
-Before(function () {
-  return rmfr(this.tempDir)
+Before(async function () {
+  await rmdir(this.tempDir, { recursive: true })
 })
-Before(function () {
-  return mkdirp(this.tempDir)
+Before(async function () {
+  await mkdir(this.tempDir, { recursive: true })
 })

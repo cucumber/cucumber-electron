@@ -12,6 +12,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v2.7.0...master)
 
+* Upgrade dependencies
 * Change package name from `cucumber-electron` to `@cucumber/electron`
 
 ### [2.7.0](https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0)
