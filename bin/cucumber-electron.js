@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-var spawn = require('child_process').spawn
-var path = require('path')
+const spawn = require('child_process').spawn
+const path = require('path')
 
-var electron = require('electron')
+const electron = require('electron')
 
-var args = process.argv.slice(2)
+const args = process.argv.slice(2)
 if (args.length === 1 && args[0] === '--help' || args[0] === '-h') {
   showHelp()
 } else {
@@ -22,12 +22,12 @@ function runCucumberInRendererProcess() {
     args.push('--TTY')
   }
 
-  var child = spawn(electron, args)
+  const child = spawn(electron, args)
   child.stdout.pipe(process.stdout)
   process.stdin.pipe(child.stdin)
 
   child.stderr.on('data', function (data) {
-    var str = data.toString('utf8')
+    const str = data.toString('utf8')
     // Mute irrelevant chromium errors
     if (str.match(/^\[\d+:\d+/) || str.match(/Couldn't set selectedTextBackgroundColor/)) return
     process.stderr.write(data)

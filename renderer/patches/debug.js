@@ -11,7 +11,7 @@ module.exports = function patchDebug({ isTTY }) {
   if (debugInDependencies()) {
     const originalDebug = require('debug')
     const cacheKey = Object.keys(require.cache).find(
-      key => require.cache[key].exports == originalDebug
+      key => require.cache[key].exports === originalDebug
     )
     const nodeDebug = require('debug/src/node')
     if (!('colors' in nodeDebug.inspectOpts) && isTTY) {
