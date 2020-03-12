@@ -4,7 +4,6 @@ const fs = require('fs')
 const os = require('os')
 const { promisify } = require('util')
 const assert = require('assert')
-const rmfr = require('rmfr')
 const colors = require('colors')
 
 const writeFile = promisify(fs.writeFile)
