@@ -9,12 +9,14 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blob/master/CONTRIBUTING.md) for more info on how to contribute to Cucumber.
 
 <!-- Releases -->
+### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...master)
 
-### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v2.7.0...master)
+### [v2.7.1](https://github.com/cucumber/cucumber-electron/compare/v2.7.0...v2.7.1)
 
 * Add `<!DOCTYPE html>` to avoid quirks mode
 * Change package name from `cucumber-electron` to `@cucumber/electron`
 * Upgrade dependencies
+* Switch from `yarn.lock` to `package-lock.json`
 
 ### [2.7.0](https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0)
 

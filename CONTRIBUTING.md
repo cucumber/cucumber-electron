@@ -11,3 +11,4 @@ Update links in `CHANGELOG.md` and commit. Then:
 
     npm version NEW_VERSION
     npm publish --access public
+    git push && git push --tags
