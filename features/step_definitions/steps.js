@@ -1,10 +1,10 @@
 const { Given, When, Then } = require('cucumber')
 
-Given('the file {string} contains:', function (filePath, contents) {
-  return this.writeFile(filePath, contents)
+Given('the file {string} contains:', async function (filePath, contents) {
+  await this.writeFile(filePath, contents)
 })
 
-Given('a step definition includes the lines:', function (lines) {
+Given('a step definition includes the lines:', async function (lines) {
   const contents = [
     'const { When } = require(\'cucumber\')',
     'When(\'I run that step\', function() {'
@@ -13,77 +13,73 @@ Given('a step definition includes the lines:', function (lines) {
     .concat([
       '})'
     ]).join('\n')
-  return this.writeFile('features/step_definitions/steps.js', contents)
+  await this.writeFile('features/step_definitions/steps.js', contents)
 })
 
-When('I run a scenario with that step', function () {
+When('I run a scenario with that step', async function () {
   const contents = [
     'Feature: With that step',
     '  Scenario: Running that step',
     '    When I run that step'
   ].join('\n')
-  return this.writeFile('features/with_that_step.feature', contents)
-    .then(() => {
-      return this.runCommand('cucumber-electron features/with_that_step.feature')
-    })
+  await this.writeFile('features/with_that_step.feature', contents)
+  await this.runCommand('cucumber-electron features/with_that_step.feature')
 })
 
-When('I run a scenario with that step and DEBUG={string}', function (debugEnvironmentValue) {
+When('I run a scenario with that step and DEBUG={string}', async function (debugEnvironmentValue) {
   const contents = [
     'Feature: With that step and DEBUG',
     '  Scenario: Running that step and DEBUG',
     '    When I run that step'
   ].join('\n')
-  return this.writeFile('features/with_that_step_and_debug.feature', contents)
-    .then(() => {
-      return this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { env: { DEBUG: debugEnvironmentValue } })
-    })
+  await this.writeFile('features/with_that_step_and_debug.feature', contents)
+  await this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { env: { DEBUG: debugEnvironmentValue } })
 })
 
-When('I run `cucumber-electron`', function () {
-  return this.runCommand('cucumber-electron')
+When('I run `cucumber-electron`', async function () {
+  await this.runCommand('cucumber-electron')
 })
 
-When('I run `cucumber-electron --interactive`', function () {
-  return this.runCommand('cucumber-electron --interactive')
+When('I run `cucumber-electron --interactive`', async function () {
+  await this.runCommand('cucumber-electron --interactive')
 })
 
-When('I run `cucumber-electron --tags @a`', function () {
-  return this.runCommand('cucumber-electron --tags @a')
+When('I run `cucumber-electron --tags @a`', async function () {
+  await this.runCommand('cucumber-electron --tags @a')
 })
 
-When('I run `cucumber-electron --tags @b`', function () {
-  return this.runCommand('cucumber-electron --tags @b')
+When('I run `cucumber-electron --tags @b`', async function () {
+  await this.runCommand('cucumber-electron --tags @b')
 })
 
-When('I run `cucumber-electron --help`', function () {
-  return this.runCommand('cucumber-electron --help')
+When('I run `cucumber-electron --help`', async function () {
+  await this.runCommand('cucumber-electron --help')
 })
 
-When('I run `cucumber-electron` in a TTY terminal', function () {
-  return this.runCommand('cucumber-electron', { env: { CUCUMBER_ELECTRON_FORCE_TTY: 'true' } })
+When('I run `cucumber-electron` in a TTY terminal', async function () {
+  await this.runCommand('cucumber-electron', { env: { CUCUMBER_ELECTRON_FORCE_TTY: 'true' } })
 })
 
-Then('the process should exit with code {int}', function (exitCode) {
-  return this.assertProcessExitedWithCode(exitCode)
+Then('the process should exit with code {int}', async function (exitCode) {
+  await this.assertProcessExitedWithCode(exitCode)
 })
 
-Then('the process should not exit', function () {
-  return this.assertProcessDidNotExit()
+Then('the process should not exit', async function () {
+  await this.assertProcessDidNotExit()
 })
 
-Then('the output should include:', function (expectedOutput) {
-  return this.assertOutputIncludes(expectedOutput)
+Then('the output should include:', async function (expectedOutput) {
+  await this.assertOutputIncludes(expectedOutput)
 })
 
-Then('stdout should include {string}', function (expectedOutput) {
-  return this.assertStdoutIncludes(expectedOutput)
+Then('stdout should include {string}', async function (expectedOutput) {
+  await this.assertStdoutIncludes(expectedOutput)
 })
 
-Then('stderr should include {string}', function (expectedOutput) {
-  return this.assertStderrIncludes(expectedOutput)
+Then('stderr should include {string}', async function (expectedOutput) {
+  await this.assertStderrIncludes(expectedOutput)
 })
 
-Then('I should see coloured output', function () {
-  return this.assertOutputIncludesColours()
+Then('I should see coloured output', async function () {
+  await this.assertOutputIncludesColours()
 })
