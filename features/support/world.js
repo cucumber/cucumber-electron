@@ -121,20 +121,6 @@ class CucumberElectronWorld {
     }
   }
 
-  async assertOutputDoesNotInclude(expectedOutput, stream = 'output') {
-    await this.ensureProcessHasExited()
-    const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
-    const normalisedActualOutput = colors
-      .strip(this.execResult[stream])
-      .replace('\r\n', '\n')
-    if (normalisedActualOutput.indexOf(normalisedExpectedOutput) !== -1) {
-      throw new Error(
-        `Did not expect ${stream} to include:\n${normalisedExpectedOutput}\n` +
-        this.printExecResult()
-      )
-    }
-  }
-
   async assertStdoutIncludes(expectedOutput) {
     return this.assertOutputIncludes(expectedOutput, 'stdout')
   }
