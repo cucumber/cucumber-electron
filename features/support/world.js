@@ -121,6 +121,20 @@ class CucumberElectronWorld {
     }
   }
 
+  async assertOutputDoesNotInclude(expectedOutput, stream = 'output') {
+    await this.ensureProcessHasExited()
+    const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
+    const normalisedActualOutput = colors
+      .strip(this.execResult[stream])
+      .replace('\r\n', '\n')
+    if (normalisedActualOutput.indexOf(normalisedExpectedOutput) !== -1) {
+      throw new Error(
+        `Did not expect ${stream} to include:\n${normalisedExpectedOutput}\n` +
+        this.printExecResult()
+      )
+    }
+  }
+
   async assertStdoutIncludes(expectedOutput) {
     return this.assertOutputIncludes(expectedOutput, 'stdout')
   }
@@ -129,6 +143,11 @@ class CucumberElectronWorld {
     // On windows, everything goes out of stderr. Electron.exe needs a shim, or something
     const errorStream = os.platform() === 'win32' ? 'stdout' : 'stderr'
     return this.assertOutputIncludes(expectedOutput, errorStream)
+  }
+
+  async assertStderrDoesNotInclude(unexpectedOutput) {
+    const errorStream = os.platform() === 'win32' ? 'stdout' : 'stderr'
+    return this.assertOutputDoesNotInclude(unexpectedOutput, errorStream)
   }
 
   async assertOutputIncludesColours() {
