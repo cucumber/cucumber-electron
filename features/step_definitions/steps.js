@@ -80,8 +80,8 @@ Then('stderr should include {string}', async function (expectedOutput) {
   await this.assertStderrIncludes(expectedOutput)
 })
 
-Then('stderr should not include {string}', async function (unexpectedOutput) {
-  await this.assertStderrDoesNotInclude(unexpectedOutput)
+Then('the output should not include {string}', async function (unexpectedOutput) {
+  await this.assertOutputDoesNotInclude(unexpectedOutput)
 })
 
 Then('I should see coloured output', async function () {

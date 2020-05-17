@@ -145,11 +145,6 @@ class CucumberElectronWorld {
     return this.assertOutputIncludes(expectedOutput, errorStream)
   }
 
-  async assertStderrDoesNotInclude(unexpectedOutput) {
-    const errorStream = os.platform() === 'win32' ? 'stdout' : 'stderr'
-    return this.assertOutputDoesNotInclude(unexpectedOutput, errorStream)
-  }
-
   async assertOutputIncludesColours() {
     await this.ensureProcessHasExited()
     if (this.execResult.stdout.indexOf('\x1B[39m') === -1) {

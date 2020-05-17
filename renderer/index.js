@@ -3,7 +3,7 @@ const electron = require('electron')
 const options = new Options(electron.remote.process.argv)
 
 require('./patches/console')
-require('./patches/debug')({ isTTY: options.isTTY })
+// require('./patches/debug')({ isTTY: options.isTTY })
 require('./keyboard/bindings')
 
 const Cucumber = require('cucumber')
