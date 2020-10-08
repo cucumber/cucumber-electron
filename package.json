@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
-    "eslint": "eslint '**/*.js'"
+    "eslint": "eslint \"**/*.js\""
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "contributors": [
