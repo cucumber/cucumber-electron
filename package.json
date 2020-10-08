@@ -7,7 +7,7 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "test": "cucumber-js && node ./bin/cucumber-electron.js && npm run eslint",
+    "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
     "eslint": "eslint '**/*.js'"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
@@ -28,7 +28,9 @@
     "colors": "^1.4.0",
     "cucumber": "6.0.5",
     "debug": "^4.1.1",
+    "del": "^6.0.0",
     "electron": "^8.2.0",
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "mkdirp": "^1.0.4"
   }
 }
