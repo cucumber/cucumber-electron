@@ -20,7 +20,7 @@ jobs:
     - name: Run tests with headless support
       uses: GabrielBB/xvfb-action@v1
       with:
-        run: npm test
+        run: npm run ci:linux
 
   build-windows:
     runs-on: windows-latest
@@ -39,5 +39,5 @@ jobs:
     - name: Run tests with headless support
       uses: GabrielBB/xvfb-action@v1
       with:
-        run: npm test
+        run: npm run ci:windows
 
