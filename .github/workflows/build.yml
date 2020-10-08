@@ -17,7 +17,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - name: Run tests with headless support
+    - name: Run tests
       uses: GabrielBB/xvfb-action@v1
       with:
         run: npm run ci:linux
@@ -36,7 +36,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - name: Run tests with headless support
+    - name: Run tests
       uses: GabrielBB/xvfb-action@v1
       with:
         run: npm run ci:windows
