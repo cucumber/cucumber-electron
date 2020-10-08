@@ -2,7 +2,9 @@
 
 Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](https://github.com/electron/electron) renderer process. Scenarios have direct access to both a browser DOM and node.js libraries, so they are fast and easy to debug interactively.
 
-[![Build Status](https://travis-ci.org/cucumber/cucumber-electron.svg?branch=master)](https://travis-ci.org/cucumber/cucumber-electron) [![Build status](https://ci.appveyor.com/api/projects/status/arac0g9l3uj476x3/branch/master?svg=true)](https://ci.appveyor.com/project/joshski/cucumber-electron/branch/master)
+[![Build Status](https://github.com/cucumber/cucumber-electron/workflows/build/badge.svg)](https://github.com/cucumber/cucumber-electron/actions) [![Build status](https://ci.appveyor.com/api/projects/status/arac0g9l3uj476x3/branch/master?svg=true)](https://ci.appveyor.com/project/joshski/cucumber-electron/branch/master)
+
+
 
 ## Install
 
