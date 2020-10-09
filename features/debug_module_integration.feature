@@ -1,4 +1,5 @@
 Feature: Debug module integration
+  @skip-windows
   Scenario: Running scenarios with DEBUG=*
     Given a step definition includes the lines:
       """
