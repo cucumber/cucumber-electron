@@ -6,6 +6,6 @@
   "devDependencies": {
     "browser-monkey": "^2.7.2",
     "cucumber-electron": "^2.5.0",
-    "electron": "^2.0.2"
+    "electron": "^7.2.4"
   }
 }
