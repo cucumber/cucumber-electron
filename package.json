@@ -7,8 +7,7 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "ci:linux": "cucumber-js && node ./bin/cucumber-electron.js",
-    "ci:windows": "cucumber-js --tags \"not @skip-windows\" && node ./bin/cucumber-electron.js --tags \"not @skip-windows\"",
+    "ci": "cucumber-js && node ./bin/cucumber-electron.js",
     "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
     "eslint": "eslint \"**/*.js\""
   },
