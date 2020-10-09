@@ -24,7 +24,8 @@ app.on('ready', () => {
     webPreferences: {
       webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1',
       contextIsolation: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true
     }
   })
 
