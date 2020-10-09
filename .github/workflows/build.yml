@@ -3,27 +3,8 @@ name: build
 on: [push]
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x, 14.x]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - name: Run tests
-      uses: GabrielBB/xvfb-action@v1
-      with:
-        run: npm run ci
-
-  build-windows:
-    runs-on: windows-latest
+  build:
+    runs-on: [ubuntu-latest, windows-latest]
 
     strategy:
       matrix:
