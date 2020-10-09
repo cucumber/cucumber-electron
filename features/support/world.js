@@ -7,7 +7,11 @@ const colors = require('colors')
 const del = require('del')
 const mkdirp = require('mkdirp')
 
-const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
+const {
+  setWorldConstructor,
+  setDefaultTimeout,
+  Before,
+} = require('@cucumber/cucumber')
 
 class CucumberElectronWorld {
   constructor() {

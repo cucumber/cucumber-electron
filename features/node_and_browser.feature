@@ -11,7 +11,7 @@ Feature: Node and browser
         """
     And the file "features/step_definitions/steps.js" contains:
         """
-        const { Given, When, Then } = require('cucumber')
+        const { Given, When, Then } = require('@cucumber/cucumber')
         const assert = require('assert')
 
         Given(/^I am in London$/, function () {

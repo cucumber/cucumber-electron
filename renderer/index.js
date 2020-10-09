@@ -5,7 +5,7 @@ const options = new Options(electron.remote.process.argv)
 require('./patches/console')
 require('./keyboard/bindings')
 
-const Cucumber = require('cucumber')
+const Cucumber = require('@cucumber/cucumber')
 
 const Output = require('./output')
 
@@ -29,13 +29,9 @@ ipc.on('run-cucumber', () => {
     const argv = options.cucumberArgv
     const cwd = process.cwd()
     new Cucumber.Cli({ argv, cwd, stdout: output }).run().then(result => {
-      // cucumber-js 4 changes the boolean result to an object
-      const resultIsObject = typeof result === 'object'
-      const success = resultIsObject ? result.success : !!result
-      const exitCode = success ? 0 : 1
       // sadly, we have to exit immediately, we can't wait for the event loop
       // to drain https://github.com/electron/electron/issues/2358
-      exitWithCode(exitCode)
+      exitWithCode(result.success ? 0 : 1)
     })
   } catch (err) {
     output.write(err.stack + '\\n')

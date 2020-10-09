@@ -1,4 +1,4 @@
-const Cucumber = require('cucumber')
+const Cucumber = require('@cucumber/cucumber')
 
 const write = process.stdout.write
 process.stdout.write = (chunk, ...args) => {

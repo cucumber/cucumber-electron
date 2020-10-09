@@ -26,8 +26,8 @@
     "url": "git://github.com/cucumber/cucumber-electron.git"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^7.0.0-rc.0",
     "colors": "^1.4.0",
-    "cucumber": "6.0.5",
     "debug": "^4.2.0",
     "del": "^6.0.0",
     "electron": "^10.1.3",

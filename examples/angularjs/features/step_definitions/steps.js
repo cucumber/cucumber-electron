@@ -1,7 +1,7 @@
 const assert = require('assert')
 const createBrowser = require('browser-monkey/create')
 
-const { Before, After, When, Then } = require('cucumber')
+const { Before, After, When, Then } = require('@cucumber/cucumber')
 
 Before(async function () {
   // TodoMVC stores TODOs in the browser's localStorage, so we delete that to have a clean slate before each scenario.

@@ -1,4 +1,4 @@
-const { Given, When, Then } = require('cucumber')
+const { Given, When, Then } = require('@cucumber/cucumber')
 
 Given('the file {string} contains:', async function (filePath, contents) {
   await this.writeFile(filePath, contents)
@@ -6,7 +6,7 @@ Given('the file {string} contains:', async function (filePath, contents) {
 
 Given('a step definition includes the lines:', async function (lines) {
   const contents = [
-    'const { When } = require(\'cucumber\')',
+    'const { When } = require(\'@cucumber/cucumber\')',
     'When(\'I run that step\', function() {'
   ]
     .concat(lines.split('\n').map(line => '    ' + line))

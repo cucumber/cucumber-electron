@@ -1,4 +1,4 @@
-const { Given } = require('cucumber')
+const { Given } = require('@cucumber/cucumber')
 const debug = require('debug')('sausages')
 
 Given('I am getting old', function () {
