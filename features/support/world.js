@@ -2,13 +2,10 @@ const { spawn } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 const os = require('os')
-const { promisify } = require('util')
 const assert = require('assert')
 const colors = require('colors')
-
-const writeFile = promisify(fs.writeFile)
-const rmdir = promisify(fs.rmdir)
-const mkdir = promisify(fs.mkdir)
+const del = require('del')
+const mkdirp = require('mkdirp')
 
 const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
 
@@ -19,8 +16,8 @@ class CucumberElectronWorld {
 
   async writeFile(filePath, contents) {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
-    await mkdir(dir, { recursive: true })
-    await writeFile(
+    mkdirp.sync(dir)
+    fs.writeFileSync(
       path.join(this.tempDir, filePath),
       contents
     )
@@ -144,8 +141,9 @@ setDefaultTimeout(15000)
 setWorldConstructor(CucumberElectronWorld)
 
 Before(async function () {
-  await rmdir(this.tempDir, { recursive: true })
+  await del(this.tempDir)
 })
-Before(async function () {
-  await mkdir(this.tempDir, { recursive: true })
+
+Before(function () {
+  mkdirp.sync(this.tempDir)
 })
