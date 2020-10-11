@@ -1,24 +1,25 @@
 # cucumber-electron
 
-Runs [cucumber-js](https://github.com/cucumber/cucumber-js) in an [electron](https://github.com/electron/electron) renderer process. Scenarios have direct access to both a browser DOM and node.js libraries, so they are fast and easy to debug interactively.
+Runs [Cucumber.js](https://github.com/cucumber/cucumber-js) in an [Electron](https://github.com/electron/electron) renderer process. Scenarios have direct access to both a browser DOM and node.js libraries, so they are fast and easy to debug interactively.
 
 [![Build Status](https://github.com/cucumber/cucumber-electron/workflows/build/badge.svg)](https://github.com/cucumber/cucumber-electron/actions)
 
-
-
 ## Install
 
-    npm install electron cucumber-electron --save-dev
+Both Electron and Cucumber.js need to be installed, they are peer dependecies.
+This gives you the option to choose the version you want to use:
+
+    npm install --save-dev electron @cucumber/cucumber @cucumber/electron
 
 ## Usage
 
-cucumber-electron is a drop-in replacement for cucumber-js, supporting the same
+Cucumber-electron is a wrapper around Cucumber.js, supporting the same
 features and command-line options. You should be able to use it on your project
 without any changes.
 
-Run cucumber-electron like it was cucumber-js, for example:
+Run cucumber-electron like it was Cucumber.js, for example:
 
-    ./node_modules/.bin/cucumber-electron ./features/your.feature:123
+    npx cucumber-electron ./features/your.feature:123
 
 
 ## Interactive Debugging
