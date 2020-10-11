@@ -9,15 +9,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: [8.x, 10.x, 12.x, 14.x]
+        node: [8.x, 10.x, 12.x, 14.x]
+        electron: [8.2.0, 9, 10]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Node.js ${{ matrix.node-version }}
+    - name: Set up Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node: ${{ matrix.node }}
     - run: npm install
+    - run: npm install electron@${{matrix.electron}}
+    - run: npm ls
     - name: Run tests
       uses: GabrielBB/xvfb-action@v1
       with:
