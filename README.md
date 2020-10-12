@@ -6,7 +6,7 @@ Runs [Cucumber.js](https://github.com/cucumber/cucumber-js) in an [Electron](htt
 
 ## Install
 
-Both Electron and Cucumber.js need to be installed, they are peer dependecies.
+Both Electron and Cucumber.js need to be installed, they are peer dependencies.
 This gives you the option to choose the version you want to use:
 
     npm install --save-dev electron @cucumber/cucumber @cucumber/electron
