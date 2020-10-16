@@ -9,7 +9,9 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blob/master/CONTRIBUTING.md) for more info on how to contribute to Cucumber.
 
 <!-- Releases -->
-### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...master)
+### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...master)
+
+### [v3.0.0-rc.0](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc.0)
 
 * Cucumber-electron now depends on [@cucumber/cucumber-7.0.0-rc.0](https://www.npmjs.com/package/@cucumber/cucumber) and above (not backward-compatible with previous versions) as an explicit peer dependency. You need to install it alongside cucumber-electron in your project.
 * Electron is also now an explicit peer dependency. Versions from 8.2.0 to 10 are supported. This gives you more freedom if you also use Electron in your app.
