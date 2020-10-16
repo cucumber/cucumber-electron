@@ -11,6 +11,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 <!-- Releases -->
 ### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...master)
 
+* Cucumber-electron now depends on [@cucumber/cucumber-7.0.0-rc.0](https://www.npmjs.com/package/@cucumber/cucumber) and above (not backward-compatible with previous versions) as an explicit peer dependency. You need to install it alongside cucumber-electron in your project.
+* Electron is also now an explicit peer dependency. Versions from 8.2.0 to 11 are supported. This gives you more freedom if you also use Electron in your app.
+* We now [officially support Node.js v14](https://github.com/cucumber/cucumber-electron/actions?query=workflow%3Abuild) (in addition to 8, 10 and 12).
+
 ### [v2.7.1](https://github.com/cucumber/cucumber-electron/compare/v2.7.0...v2.7.1)
 
 * Add `<!DOCTYPE html>` to avoid quirks mode
