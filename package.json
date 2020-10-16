@@ -10,7 +10,8 @@
   "scripts": {
     "ci": "cucumber-js && node ./bin/cucumber-electron.js",
     "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
-    "eslint": "eslint \"**/*.js\""
+    "eslint": "eslint \"**/*.js\"",
+    "update-dependencies": "npx npm-check-updates --upgrade --dep prod,dev,optional,bundle"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "contributors": [
