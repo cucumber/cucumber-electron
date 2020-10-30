@@ -15,15 +15,15 @@ if (args.length === 1 && args[0] === '--help' || args[0] === '-h') {
 }
 
 function showHelp() {
-  require('../cli/help')
+  require('../src/cli/help')
 }
 
 function showVersion() {
-  require('../cli/version')
+  require('../src/cli/version')
 }
 
 function runCucumberInRendererProcess() {
-  args.unshift(path.resolve(path.join(__dirname, '../index.js')))
+  args.unshift(path.resolve(path.join(__dirname, '../src/index.js')))
   if (process.stdout.isTTY || process.env.CUCUMBER_ELECTRON_FORCE_TTY === 'true') {
     args.push('--TTY')
   }
