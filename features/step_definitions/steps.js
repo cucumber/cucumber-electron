@@ -36,28 +36,8 @@ When('I run a scenario with that step and DEBUG={string}', async function (debug
   await this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { env: { DEBUG: debugEnvironmentValue } })
 })
 
-When('I run `cucumber-electron`', async function () {
-  await this.runCommand('cucumber-electron')
-})
-
-When('I run `cucumber-electron --interactive`', async function () {
-  await this.runCommand('cucumber-electron --interactive')
-})
-
-When('I run `cucumber-electron --tags @a`', async function () {
-  await this.runCommand('cucumber-electron --tags @a')
-})
-
-When('I run `cucumber-electron --tags @b`', async function () {
-  await this.runCommand('cucumber-electron --tags @b')
-})
-
-When('I run `cucumber-electron --version`', async function () {
-  await this.runCommand('cucumber-electron --version')
-})
-
-When('I run `cucumber-electron --help`', async function () {
-  await this.runCommand('cucumber-electron --help')
+When(/^I run `cucumber-electron(.*)`$/, async function (options) {
+  await this.runCommand(`cucumber-electron${options || ''}`)
 })
 
 When('I run `cucumber-electron` in a TTY terminal', async function () {
