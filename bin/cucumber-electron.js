@@ -8,12 +8,18 @@ const electron = require('electron')
 const args = process.argv.slice(2)
 if (args.length === 1 && args[0] === '--help' || args[0] === '-h') {
   showHelp()
+} else if (args.length === 1 && args[0] === '--version' || args[0] === '-V') {
+  showVersion()
 } else {
   runCucumberInRendererProcess()
 }
 
 function showHelp() {
   require('../cli/help')
+}
+
+function showVersion() {
+  require('../cli/version')
 }
 
 function runCucumberInRendererProcess() {
@@ -23,6 +29,8 @@ function runCucumberInRendererProcess() {
   }
 
   const child = spawn(electron, args)
+  child.on('exit', function (code) { process.exit(code) })
+
   child.stdout.pipe(process.stdout)
   process.stdin.pipe(child.stdin)
 
@@ -32,5 +40,4 @@ function runCucumberInRendererProcess() {
     if (str.match(/^\[\d+:\d+/) || str.match(/Couldn't set selectedTextBackgroundColor/)) return
     process.stderr.write(data)
   })
-  child.on('exit', function (code) { process.exit(code) })
 }

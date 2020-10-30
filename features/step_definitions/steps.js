@@ -52,6 +52,10 @@ When('I run `cucumber-electron --tags @b`', async function () {
   await this.runCommand('cucumber-electron --tags @b')
 })
 
+When('I run `cucumber-electron --version`', async function () {
+  await this.runCommand('cucumber-electron --version')
+})
+
 When('I run `cucumber-electron --help`', async function () {
   await this.runCommand('cucumber-electron --help')
 })

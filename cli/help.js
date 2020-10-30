@@ -15,7 +15,6 @@ function rewriteExitLine(line) {
     '    -i, --interactive               open an interactive debugger (chromium dev tools)'
   ].join('\n')
 }
-console.log(process.argv)
 new Cucumber.Cli({
   argv: process.argv,
   cwd: process.cwd(),
