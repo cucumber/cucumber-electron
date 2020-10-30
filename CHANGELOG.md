@@ -12,6 +12,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 ### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...master)
 
 * Both Cucumber.js' and Cucumber-electron's versions are now displayed when using `--version` and the process properly exits
+* Unknown CLI options are no longer making Cucumber-electron hang in non-interactive mode
 
 ### [v3.0.0-rc.0](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc.0)
 
