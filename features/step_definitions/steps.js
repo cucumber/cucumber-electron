@@ -1,5 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber')
 
+const VERSION = require('../../package.json').version
+
 Given('the file {string} contains:', async function (filePath, contents) {
   await this.writeFile(filePath, contents)
 })
@@ -58,6 +60,10 @@ Then('the output should include:', async function (expectedOutput) {
 
 Then('stdout should include {string}', async function (expectedOutput) {
   await this.assertStdoutIncludes(expectedOutput)
+})
+
+Then('stdout should include the version of Cucumber-electron', async function () {
+  await this.assertStdoutIncludes(`Cucumber-electron: ${VERSION}`)
 })
 
 Then('stderr should include {string}', async function (expectedOutput) {
