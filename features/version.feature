@@ -1,4 +1,4 @@
-Feature: Help
+Feature: Version
   Scenario: Running the CLI with --version
     When I run `cucumber-electron --version`
     Then stdout should include "Cucumber.js: 7.0.0-rc.0"
