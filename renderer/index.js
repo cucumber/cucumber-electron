@@ -20,6 +20,8 @@ process.on('unhandledRejection', function (reason) {
   exitWithCode(3)
 })
 
+process.on('exit', exitWithCode)
+
 function exitWithCode(code) {
   if (!options.interactiveMode) electron.remote.process.exit(code)
 }
