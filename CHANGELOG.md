@@ -11,6 +11,8 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 <!-- Releases -->
 ### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...master)
 
+* Both Cucumber.js' and Cucumber-electron's versions are now displayed when using `--version` and the process properly exits
+
 ### [v3.0.0-rc.0](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc.0)
 
 * Cucumber-electron now depends on [@cucumber/cucumber-7.0.0-rc.0](https://www.npmjs.com/package/@cucumber/cucumber) and above (not backward-compatible with previous versions) as an explicit peer dependency. You need to install it alongside cucumber-electron in your project.
