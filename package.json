@@ -1,6 +1,6 @@
 {
   "name": "@cucumber/electron",
-  "version": "3.0.0-rc.0",
+  "version": "3.0.0-rc.1",
   "description": "Runs cucumber.js in electron",
   "main": "index.js",
   "license": "MIT",
