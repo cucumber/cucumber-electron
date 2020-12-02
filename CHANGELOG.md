@@ -9,7 +9,11 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blob/master/CONTRIBUTING.md) for more info on how to contribute to Cucumber.
 
 <!-- Releases -->
-### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...master)
+### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.1...master)
+
+* N/A
+
+### [v3.0.0-rc.1](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0-rc.1)
 
 * Both Cucumber.js' and Cucumber-electron's versions are now displayed when using `--version` and the process properly exits
 * Unknown CLI options are no longer making Cucumber-electron hang in non-interactive mode
