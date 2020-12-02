@@ -14,6 +14,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 * Both Cucumber.js' and Cucumber-electron's versions are now displayed when using `--version` and the process properly exits
 * Unknown CLI options are no longer making Cucumber-electron hang in non-interactive mode
 * Uncaught exceptions thrown in the Cucumber CLI process — including compile errors like syntax errors and failed requires — are now properly caught and reported before making the process exit with status 3
+* Electron 11 is now officially supported
 
 ### [v3.0.0-rc.0](https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc.0)
 
