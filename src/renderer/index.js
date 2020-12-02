@@ -9,36 +9,48 @@ const Cucumber = require('@cucumber/cucumber')
 
 const Output = require('./output')
 
+const STATUS_SUCCESS = 0
+const STATUS_ERROR_DURING_CUCUMBER_RUN = 2
+const STATUS_UNCAUGHT_ERROR = 3
+
 const output = new Output({ isTTY: options.isTTY })
 
 const { ipcRenderer: ipc } = electron
 
+const exitWithUncaughtError = (reason) => {
+  output.write(reason.stack)
+  exitWithCode(STATUS_UNCAUGHT_ERROR)
+}
+
+const exitWithCucumberResult = (result) =>
+  exitWithCode(result.success ?
+    STATUS_SUCCESS :
+    STATUS_ERROR_DURING_CUCUMBER_RUN
+  )
+
+const exitWithCode = (code = STATUS_SUCCESS) =>
+  !options.interactiveMode && electron.remote.process.exit(code)
+
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 
-process.on('unhandledRejection', function (reason) {
-  output.write(reason.message + '\\n' + reason.stack)
-  exitWithCode(3)
-})
+process.on('unhandledRejection', exitWithUncaughtError)
 
 process.on('exit', exitWithCode)
 
-function exitWithCode(code) {
-  if (!options.interactiveMode) electron.remote.process.exit(code)
-}
-
 ipc.on('run-cucumber', () => {
   try {
-    const argv = options.cucumberArgv
-    const cwd = process.cwd()
-    new Cucumber.Cli({ argv, cwd, stdout: output }).run().then(result => {
-      // sadly, we have to exit immediately, we can't wait for the event loop
-      // to drain https://github.com/electron/electron/issues/2358
-      exitWithCode(result.success ? 0 : 1)
+    const cli = new Cucumber.Cli({
+      argv: options.cucumberArgv,
+      cwd: process.cwd(),
+      stdout: output
     })
-  } catch (err) {
-    output.write(err.stack + '\\n')
-    exitWithCode(2)
-  }
+    // sadly, we have to exit immediately, we can't wait for the event loop
+    // to drain https://github.com/electron/electron/issues/2358
+    cli.run().then(
+      exitWithCucumberResult,
+      exitWithUncaughtError
+    )
+  } catch (err) { exitWithUncaughtError(err) }
 })
 
 ipc.send('ready-to-run-cucumber')
