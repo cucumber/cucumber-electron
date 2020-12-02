@@ -11,6 +11,7 @@
     "ci": "cucumber-js && node ./bin/cucumber-electron.js",
     "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
     "eslint": "eslint \"**/*.js\"",
+    "eslint:fix": "eslint \"**/*.js\" --fix",
     "update-dependencies": "npx npm-check-updates --upgrade --dep prod,dev,optional,bundle"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
@@ -37,6 +38,9 @@
     "del": "^6.0.0",
     "electron": "^11.0.3",
     "eslint": "^7.14.0",
-    "mkdirp": "^1.0.4"
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "mkdirp": "^1.0.4",
+    "prettier": "^2.2.1"
   }
 }

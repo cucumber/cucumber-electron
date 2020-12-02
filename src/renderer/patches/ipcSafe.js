@@ -18,9 +18,13 @@ module.exports = function ipcSafe(arg, inspectObjects) {
     return inspectObjects ? '[' + array.join(', ') + ']' : array
   } else if (typeof arg === 'object') {
     if (inspectObjects) {
-      return '{ ' +
-        Object.keys(arg).map(key => `${key}: ${ipcSafe(arg[key], inspectObjects)}`).join(', ') +
-      ' }'
+      return (
+        '{ ' +
+        Object.keys(arg)
+          .map(key => `${key}: ${ipcSafe(arg[key], inspectObjects)}`)
+          .join(', ') +
+        ' }'
+      )
     } else {
       const obj = {}
       Object.keys(arg).forEach(key => {

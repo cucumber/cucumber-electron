@@ -8,13 +8,12 @@ Given('the file {string} contains:', async function (filePath, contents) {
 
 Given('a step definition includes the lines:', async function (lines) {
   const contents = [
-    'const { When } = require(\'@cucumber/cucumber\')',
-    'When(\'I run that step\', function() {'
+    "const { When } = require('@cucumber/cucumber')",
+    "When('I run that step', function() {",
   ]
     .concat(lines.split('\n').map(line => '    ' + line))
-    .concat([
-      '})'
-    ]).join('\n')
+    .concat(['})'])
+    .join('\n')
   await this.writeFile('features/step_definitions/steps.js', contents)
 })
 
@@ -22,7 +21,7 @@ When('I run a scenario with that step', async function () {
   const contents = [
     'Feature: With that step',
     '  Scenario: Running that step',
-    '    When I run that step'
+    '    When I run that step',
   ].join('\n')
   await this.writeFile('features/with_that_step.feature', contents)
   await this.runCommand('cucumber-electron features/with_that_step.feature')
@@ -32,10 +31,12 @@ When('I run a scenario with that step and DEBUG={string}', async function (debug
   const contents = [
     'Feature: With that step and DEBUG',
     '  Scenario: Running that step and DEBUG',
-    '    When I run that step'
+    '    When I run that step',
   ].join('\n')
   await this.writeFile('features/with_that_step_and_debug.feature', contents)
-  await this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', { env: { DEBUG: debugEnvironmentValue } })
+  await this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', {
+    env: { DEBUG: debugEnvironmentValue },
+  })
 })
 
 When(/^I run `cucumber-electron(.*)`$/, async function (options) {

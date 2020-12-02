@@ -6,9 +6,9 @@ const path = require('path')
 const electron = require('electron')
 
 const args = process.argv.slice(2)
-if (args.length === 1 && args[0] === '--help' || args[0] === '-h') {
+if ((args.length === 1 && args[0] === '--help') || args[0] === '-h') {
   showHelp()
-} else if (args.length === 1 && args[0] === '--version' || args[0] === '-V') {
+} else if ((args.length === 1 && args[0] === '--version') || args[0] === '-V') {
   showVersion()
 } else {
   runCucumberInRendererProcess()
@@ -29,7 +29,9 @@ function runCucumberInRendererProcess() {
   }
 
   const child = spawn(electron, args)
-  child.on('exit', function (code) { process.exit(code) })
+  child.on('exit', function (code) {
+    process.exit(code)
+  })
 
   child.stdout.pipe(process.stdout)
   process.stdin.pipe(child.stdin)

@@ -1,6 +1,6 @@
 const Cucumber = require('@cucumber/cucumber')
 
-module.exports = (stdoutRewrite) => {
+module.exports = stdoutRewrite => {
   const write = process.stdout.write
 
   process.stdout.write = (chunk, ...args) => {
@@ -11,6 +11,6 @@ module.exports = (stdoutRewrite) => {
   new Cucumber.Cli({
     argv: process.argv,
     cwd: process.cwd(),
-    stdout: process.stdout
+    stdout: process.stdout,
   }).run()
 }

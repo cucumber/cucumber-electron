@@ -7,7 +7,8 @@ class BrowserWindowOutput {
   }
 
   write() {
-    Array.prototype.slice.apply(arguments)
+    Array.prototype.slice
+      .apply(arguments)
       .map(argument => this.escapeTags(argument))
       .forEach(escapedArgument => this.appendTag(escapedArgument))
   }

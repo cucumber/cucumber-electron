@@ -36,7 +36,9 @@ When('you add the task {string}', async function (task) {
 })
 
 Then('the list of active tasks contains:', function (table) {
-  const actualList = [...this.doc.querySelectorAll('.todo-list li')].map(node => [node.innerText.trim()])
+  const actualList = [...this.doc.querySelectorAll('.todo-list li')].map(node => [
+    node.innerText.trim(),
+  ])
   assert.deepEqual(table.raw(), actualList)
 })
 
@@ -53,7 +55,5 @@ function mountIframe(path) {
 }
 
 function angularAppMounted(win) {
-  return new Promise(resolve =>
-    win.angular.element(win.document).ready(() => resolve())
-  )
+  return new Promise(resolve => win.angular.element(win.document).ready(() => resolve()))
 }

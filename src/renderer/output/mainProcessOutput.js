@@ -6,7 +6,8 @@ class MainProcessOutput {
   }
 
   write() {
-    Array.prototype.slice.apply(arguments)
+    Array.prototype.slice
+      .apply(arguments)
       .forEach(argument => this.stdout.write(argument.toString()))
   }
 }

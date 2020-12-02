@@ -5,33 +5,41 @@
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-angular.module('todomvc')
+angular
+  .module('todomvc')
   .controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, store) {
     'use strict'
 
-    var todos = $scope.todos = store.todos
+    var todos = ($scope.todos = store.todos)
 
     $scope.newTodo = ''
     $scope.editedTodo = null
 
-    $scope.$watch('todos', function () {
-      $scope.remainingCount = $filter('filter')(todos, { completed: false }).length
-      $scope.completedCount = todos.length - $scope.remainingCount
-      $scope.allChecked = !$scope.remainingCount
-    }, true)
+    $scope.$watch(
+      'todos',
+      function () {
+        $scope.remainingCount = $filter('filter')(todos, { completed: false }).length
+        $scope.completedCount = todos.length - $scope.remainingCount
+        $scope.allChecked = !$scope.remainingCount
+      },
+      true,
+    )
 
     // Monitor the current route for changes and adjust the filter accordingly.
     $scope.$on('$routeChangeSuccess', function () {
-      var status = $scope.status = $routeParams.status || ''
-      $scope.statusFilter = (status === 'active') ?
-        { completed: false } : (status === 'completed') ?
-          { completed: true } : {}
+      var status = ($scope.status = $routeParams.status || '')
+      $scope.statusFilter =
+        status === 'active'
+          ? { completed: false }
+          : status === 'completed'
+          ? { completed: true }
+          : {}
     })
 
     $scope.addTodo = function () {
       var newTodo = {
         title: $scope.newTodo.trim(),
-        completed: false
+        completed: false,
       }
 
       if (!newTodo.title) {
@@ -39,7 +47,8 @@ angular.module('todomvc')
       }
 
       $scope.saving = true
-      store.insert(newTodo)
+      store
+        .insert(newTodo)
         .then(function success() {
           $scope.newTodo = ''
         })
@@ -78,9 +87,12 @@ angular.module('todomvc')
       }
 
       store[todo.title ? 'put' : 'delete'](todo)
-        .then(function success() {}, function error() {
-          todo.title = $scope.originalTodo.title
-        })
+        .then(
+          function success() {},
+          function error() {
+            todo.title = $scope.originalTodo.title
+          },
+        )
         .finally(function () {
           $scope.editedTodo = null
         })
@@ -105,10 +117,12 @@ angular.module('todomvc')
       if (angular.isDefined(completed)) {
         todo.completed = completed
       }
-      store.put(todo, todos.indexOf(todo))
-        .then(function success() {}, function error() {
+      store.put(todo, todos.indexOf(todo)).then(
+        function success() {},
+        function error() {
           todo.completed = !todo.completed
-        })
+        },
+      )
     }
 
     $scope.clearCompletedTodos = function () {

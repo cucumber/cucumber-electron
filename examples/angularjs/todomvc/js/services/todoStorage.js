@@ -7,18 +7,21 @@
  * They both follow the same API, returning promises for all changes to the
  * model.
  */
-angular.module('todomvc')
+angular
+  .module('todomvc')
   .factory('todoStorage', function ($http, $injector) {
     'use strict'
 
     // Detect if an API backend is present. If so, return the API module, else
     // hand off the localStorage adapter
-    return $http.get('/api')
-      .then(function () {
+    return $http.get('/api').then(
+      function () {
         return $injector.get('api')
-      }, function () {
+      },
+      function () {
         return $injector.get('localStorage')
-      })
+      },
+    )
   })
 
   .factory('api', function ($resource) {
@@ -27,11 +30,9 @@ angular.module('todomvc')
     var store = {
       todos: [],
 
-      api: $resource('/api/todos/:id', null,
-        {
-          update: { method: 'PUT' }
-        }
-      ),
+      api: $resource('/api/todos/:id', null, {
+        update: { method: 'PUT' },
+      }),
 
       clearCompleted: function () {
         var originalTodos = store.todos.slice(0)
@@ -42,21 +43,25 @@ angular.module('todomvc')
 
         angular.copy(incompleteTodos, store.todos)
 
-        return store.api.delete(function () {
-        }, function error() {
-          angular.copy(originalTodos, store.todos)
-        })
+        return store.api.delete(
+          function () {},
+          function error() {
+            angular.copy(originalTodos, store.todos)
+          },
+        )
       },
 
       delete: function (todo) {
         var originalTodos = store.todos.slice(0)
 
         store.todos.splice(store.todos.indexOf(todo), 1)
-        return store.api.delete({ id: todo.id },
-          function () {
-          }, function error() {
+        return store.api.delete(
+          { id: todo.id },
+          function () {},
+          function error() {
             angular.copy(originalTodos, store.todos)
-          })
+          },
+        )
       },
 
       get: function () {
@@ -68,20 +73,21 @@ angular.module('todomvc')
       insert: function (todo) {
         var originalTodos = store.todos.slice(0)
 
-        return store.api.save(todo,
+        return store.api.save(
+          todo,
           function success(resp) {
             todo.id = resp.id
             store.todos.push(todo)
-          }, function error() {
+          },
+          function error() {
             angular.copy(originalTodos, store.todos)
-          })
-          .$promise
+          },
+        ).$promise
       },
 
       put: function (todo) {
-        return store.api.update({ id: todo.id }, todo)
-          .$promise
-      }
+        return store.api.update({ id: todo.id }, todo).$promise
+      },
     }
 
     return store
@@ -158,7 +164,7 @@ angular.module('todomvc')
         deferred.resolve(store.todos)
 
         return deferred.promise
-      }
+      },
     }
 
     return store

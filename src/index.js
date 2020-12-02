@@ -25,8 +25,8 @@ app.on('ready', () => {
       webSecurity: process.env.CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY !== '1',
       contextIsolation: false,
       nodeIntegration: true,
-      enableRemoteModule: true
-    }
+      enableRemoteModule: true,
+    },
   })
 
   win.webContents.once('did-finish-load', () => {

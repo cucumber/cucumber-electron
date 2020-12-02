@@ -7,11 +7,7 @@ const colors = require('colors')
 const del = require('del')
 const mkdirp = require('mkdirp')
 
-const {
-  setWorldConstructor,
-  setDefaultTimeout,
-  Before,
-} = require('@cucumber/cucumber')
+const { setWorldConstructor, setDefaultTimeout, Before } = require('@cucumber/cucumber')
 
 class CucumberElectronWorld {
   constructor() {
@@ -21,10 +17,7 @@ class CucumberElectronWorld {
   async writeFile(filePath, contents) {
     const dir = path.resolve(path.join(this.tempDir, path.dirname(filePath)))
     mkdirp.sync(dir)
-    fs.writeFileSync(
-      path.join(this.tempDir, filePath),
-      contents
-    )
+    fs.writeFileSync(path.join(this.tempDir, filePath), contents)
   }
 
   async runCommand(command, { env } = { env: {} }) {
@@ -49,7 +42,7 @@ class CucumberElectronWorld {
       this.spawnedProcess = spawn('node', args, {
         cwd: this.tempDir,
         env: childEnv,
-        detached: true
+        detached: true,
       })
 
       this.spawnedProcess.stdout.on('data', chunk => {
@@ -101,23 +94,16 @@ class CucumberElectronWorld {
 
   async assertProcessExitedWithCode(expectedExitCode) {
     await this.ensureProcessHasExited()
-    assert.equal(
-      this.spawnedProcess.exitCode,
-      expectedExitCode,
-      this.printExecResult()
-    )
+    assert.equal(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
   }
 
   async assertOutputIncludes(expectedOutput, stream = 'output') {
     await this.ensureProcessHasExited()
     const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
-    const normalisedActualOutput = colors
-      .strip(this.execResult[stream])
-      .replace('\r\n', '\n')
+    const normalisedActualOutput = colors.strip(this.execResult[stream]).replace('\r\n', '\n')
     if (normalisedActualOutput.indexOf(normalisedExpectedOutput) === -1) {
       throw new Error(
-        `Expected ${stream} to include:\n${normalisedExpectedOutput}\n` +
-          this.printExecResult()
+        `Expected ${stream} to include:\n${normalisedExpectedOutput}\n` + this.printExecResult(),
       )
     }
   }
