@@ -9,7 +9,11 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blob/master/CONTRIBUTING.md) for more info on how to contribute to Cucumber.
 
 <!-- Releases -->
-### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.1...master)
+### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0...master)
+
+* N/A
+
+### [v3.0.0-rc.1](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0)
 
 * Depends on Cucumber.js 7.0.0 and above.
 * The peer dependency on Electron has been relaxed: all versions below 12 are now allowed. This will allow you to use a recent version of Electron before we bump it in Cucumber-electron's dependencies :)
