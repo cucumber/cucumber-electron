@@ -16,8 +16,9 @@
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "contributors": [
+    "Aslak Hellesøy <aslak.hellesoy@gmail.com>",
     "Josh Chisholm <joshuachisholm@gmail.com>",
-    "Aslak Hellesøy <aslak.hellesoy@gmail.com>"
+    "Julien Biezemans <jb@jbpros.com>"
   ],
   "repository": {
     "type": "git",
