@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "@cucumber/cucumber": "^7.0.0",
-    "electron": ">=8.2.0 <=11.1.0"
+    "electron": ">=8.2.0 <12"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^7.0.0",
