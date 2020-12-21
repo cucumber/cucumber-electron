@@ -11,7 +11,8 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 <!-- Releases -->
 ### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.1...master)
 
-* N/A
+* Depends on Cucumber.js 7.0.0 and above.
+* The peer dependency on Electron has been relaxed: all versions below 12 are now allowed. This will allow you to use a recent version of Electron before we bump it in Cucumber-electron's dependencies :)
 
 ### [v3.0.0-rc.1](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0-rc.1)
 
