@@ -20,45 +20,42 @@ class CucumberElectronWorld {
     fs.writeFileSync(path.join(this.tempDir, filePath), contents)
   }
 
-  async runCommand(command, { env } = { env: {} }) {
+  runCommand(command, { env } = { env: {} }) {
     const args = command.split(' ')
     args[0] = args[0].replace(/^cucumber-electron/, 'cucumber-electron.js')
     args[0] = path.resolve(__dirname + '/../../bin/' + args[0])
 
-    return new Promise((resolve, reject) => {
-      this.execResult = { stdout: '', stderr: '', output: '', exitCode: null }
-      this.printExecResult = () =>
-        '------------------------------------\n' +
-        `The process exited with code ${this.spawnedProcess.exitCode}\n` +
-        '------------------------------------\n' +
-        `OUTPUT:\n${this.execResult.output}\n` +
-        '------------------------------------\n' +
-        `STDOUT:\n${this.execResult.stdout}\n` +
-        '------------------------------------\n' +
-        `STDERR:\n${this.execResult.stderr}\n` +
-        '------------------------------------\n'
+    this.execResult = { stdout: '', stderr: '', output: '', exitCode: null, error: null }
+    this.printExecResult = () =>
+      '------------------------------------\n' +
+      `The process exited with code ${this.spawnedProcess.exitCode}\n` +
+      '------------------------------------\n' +
+      `OUTPUT:\n${this.execResult.output}\n` +
+      '------------------------------------\n' +
+      `STDOUT:\n${this.execResult.stdout}\n` +
+      '------------------------------------\n' +
+      `STDERR:\n${this.execResult.stderr}\n` +
+      '------------------------------------\n'
 
-      const childEnv = Object.assign(process.env, env)
-      this.spawnedProcess = spawn('node', args, {
-        cwd: this.tempDir,
-        env: childEnv,
-        detached: true,
-      })
-
-      this.spawnedProcess.stdout.on('data', chunk => {
-        this.execResult.stdout += chunk.toString()
-        this.execResult.output += chunk.toString()
-      })
-      this.spawnedProcess.stderr.on('data', chunk => {
-        this.execResult.stderr += chunk.toString()
-        this.execResult.output += chunk.toString()
-      })
-      this.spawnedProcess.on('error', e => {
-        reject(e)
-      })
-      this.spawnedProcess.on('exit', code => (this.execResult.exitCode = code))
-      resolve()
+    const childEnv = Object.assign(process.env, env)
+    this.spawnedProcess = spawn('node', args, {
+      cwd: this.tempDir,
+      env: childEnv,
+      detached: true,
     })
+
+    this.spawnedProcess.stdout.on('data', chunk => {
+      this.execResult.stdout += chunk.toString()
+      this.execResult.output += chunk.toString()
+    })
+    this.spawnedProcess.stderr.on('data', chunk => {
+      this.execResult.stderr += chunk.toString()
+      this.execResult.output += chunk.toString()
+    })
+    this.spawnedProcess.on('error', e => {
+      this.execResult.error = e
+    })
+    this.spawnedProcess.on('exit', code => (this.execResult.exitCode = code))
   }
 
   async ensureProcessHasExited() {
@@ -94,7 +91,8 @@ class CucumberElectronWorld {
 
   async assertProcessExitedWithCode(expectedExitCode) {
     await this.ensureProcessHasExited()
-    assert.equal(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
+    if (this.execResult.error) throw this.execResult.error
+    assert.strictEqual(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
   }
 
   async assertOutputIncludes(expectedOutput, stream = 'output') {
@@ -121,7 +119,7 @@ class CucumberElectronWorld {
   async assertOutputIncludesColours() {
     await this.ensureProcessHasExited()
     if (this.execResult.stdout.indexOf('\x1B[39m') === -1) {
-      throw new Error('Expected coloured output')
+      throw new Error('Expected coloured output, but was:' + this.execResult.stdout)
     }
   }
 }

@@ -24,7 +24,7 @@ When('I run a scenario with that step', async function () {
     '    When I run that step',
   ].join('\n')
   await this.writeFile('features/with_that_step.feature', contents)
-  await this.runCommand('cucumber-electron features/with_that_step.feature')
+  this.runCommand('cucumber-electron features/with_that_step.feature')
 })
 
 When('I run a scenario with that step and DEBUG={string}', async function (debugEnvironmentValue) {
@@ -34,17 +34,17 @@ When('I run a scenario with that step and DEBUG={string}', async function (debug
     '    When I run that step',
   ].join('\n')
   await this.writeFile('features/with_that_step_and_debug.feature', contents)
-  await this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', {
+  this.runCommand('cucumber-electron features/with_that_step_and_debug.feature', {
     env: { DEBUG: debugEnvironmentValue },
   })
 })
 
-When(/^I run `cucumber-electron(.*)`$/, async function (options) {
-  await this.runCommand(`cucumber-electron${options || ''}`)
+When(/^I run `cucumber-electron(.*)`$/, function (options) {
+  this.runCommand(`cucumber-electron${options || ''}`)
 })
 
-When('I run `cucumber-electron` in a TTY terminal', async function () {
-  await this.runCommand('cucumber-electron', { env: { CUCUMBER_ELECTRON_FORCE_TTY: 'true' } })
+When('I run `cucumber-electron` in a TTY terminal', function () {
+  this.runCommand('cucumber-electron', { env: { CUCUMBER_ELECTRON_FORCE_TTY: 'true' } })
 })
 
 Then('the process should exit with code {int}', async function (exitCode) {
