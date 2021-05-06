@@ -10,11 +10,6 @@ class Output extends Writable {
     this.mainProcessOutput = new MainProcessOutput()
   }
 
-  on(event, listener) {
-    this.browserWindowOutput.on(event, listener)
-    this.mainProcessOutput.on(event, listener)
-  }
-
   _write(chunk, encoding, callback) {
     this.mainProcessOutput.write(chunk, encoding)
     this.browserWindowOutput.write(chunk, encoding)
