@@ -1,6 +1,6 @@
 const ipcSafe = require('./ipcSafe')
-const electron = require('electron')
-const mainProcessConsole = electron.remote.getGlobal('console')
+const remote = require('electron').remote
+const mainProcessConsole = remote.getGlobal('console')
 const localConsole = console
 global.console = {}
 ;['error', 'warn', 'info', 'log'].forEach(method => {

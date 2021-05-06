@@ -1,6 +1,7 @@
 const Options = require('../cli/options')
 const electron = require('electron')
-const options = new Options(electron.remote.process.argv)
+const remote = require('electron').remote
+const options = new Options(remote.process.argv)
 
 require('./patches/console')
 require('./keyboard/bindings')

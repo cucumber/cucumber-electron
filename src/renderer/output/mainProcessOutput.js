@@ -1,10 +1,10 @@
-const electron = require('electron')
+const remote = require('electron').remote
 const { Writable } = require('stream')
 
 class MainProcessOutput extends Writable {
   constructor() {
     super()
-    this.stdout = electron.remote.process.stdout
+    this.stdout = remote.process.stdout
   }
 
   _write(chunk, encoding, callback) {
