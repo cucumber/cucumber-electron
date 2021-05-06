@@ -1,16 +1,16 @@
 const AnsiToHtml = require('ansi-to-html')
+const { Writable } = require('stream')
 
-class BrowserWindowOutput {
+class BrowserWindowOutput extends Writable {
   constructor() {
+    super()
     this.element = document.body
     this.ansiToHtml = new AnsiToHtml()
   }
 
-  write() {
-    Array.prototype.slice
-      .apply(arguments)
-      .map(argument => this.escapeTags(argument))
-      .forEach(escapedArgument => this.appendTag(escapedArgument))
+  _write(chunk, encoding, callback) {
+    this.appendTag(this.escapeTags(chunk.toString('utf-8')))
+    callback()
   }
 
   escapeTags(argument) {

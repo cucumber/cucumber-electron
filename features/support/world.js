@@ -25,12 +25,12 @@ class CucumberElectronWorld {
     args[0] = args[0].replace(/^cucumber-electron/, 'cucumber-electron.js')
     args[0] = path.resolve(__dirname + '/../../bin/' + args[0])
 
-    this.execResult = { stdout: '', stderr: '', output: '', exitCode: null, error: null }
+    this.execResult = { stdout: '', stderr: '', exitCode: null, error: null }
     this.printExecResult = () =>
       '------------------------------------\n' +
       `The process exited with code ${this.spawnedProcess.exitCode}\n` +
       '------------------------------------\n' +
-      `OUTPUT:\n${this.execResult.output}\n` +
+      `Exception:\n${(this.execResult.error && this.execResult.error.stack) || ''}\n` +
       '------------------------------------\n' +
       `STDOUT:\n${this.execResult.stdout}\n` +
       '------------------------------------\n' +
@@ -46,11 +46,9 @@ class CucumberElectronWorld {
 
     this.spawnedProcess.stdout.on('data', chunk => {
       this.execResult.stdout += chunk.toString()
-      this.execResult.output += chunk.toString()
     })
     this.spawnedProcess.stderr.on('data', chunk => {
       this.execResult.stderr += chunk.toString()
-      this.execResult.output += chunk.toString()
     })
     this.spawnedProcess.on('error', e => {
       this.execResult.error = e
@@ -95,7 +93,7 @@ class CucumberElectronWorld {
     assert.strictEqual(this.spawnedProcess.exitCode, expectedExitCode, this.printExecResult())
   }
 
-  async assertOutputIncludes(expectedOutput, stream = 'output') {
+  async assertOutputIncludes(expectedOutput, stream) {
     await this.ensureProcessHasExited()
     const normalisedExpectedOutput = expectedOutput.replace('\r\n', '\n')
     const normalisedActualOutput = colors.strip(this.execResult[stream]).replace('\r\n', '\n')
@@ -119,7 +117,7 @@ class CucumberElectronWorld {
   async assertOutputIncludesColours() {
     await this.ensureProcessHasExited()
     if (this.execResult.stdout.indexOf('\x1B[39m') === -1) {
-      throw new Error('Expected coloured output, but was:' + this.execResult.stdout)
+      throw new Error('Expected coloured stdout, but was:\n' + this.printExecResult())
     }
   }
 }

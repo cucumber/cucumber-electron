@@ -37,7 +37,7 @@ function runCucumberInRendererProcess() {
   process.stdin.pipe(child.stdin)
 
   child.stderr.on('data', function (data) {
-    const str = data.toString('utf8')
+    const str = data.toString('utf-8')
     // Mute irrelevant chromium errors
     if (str.match(/^\[\d+:\d+/) || str.match(/Couldn't set selectedTextBackgroundColor/)) return
     process.stderr.write(data)
