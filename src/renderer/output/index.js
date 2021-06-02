@@ -1,18 +1,18 @@
-const BrowserWindowOutput = require('./browserWindowOutput')
-const MainProcessOutput = require('./mainProcessOutput')
+const BrowserWindowWritable = require('./BrowserWindowWritable')
 const { Writable } = require('stream')
+const remote = require('electron').remote
 
-class Output extends Writable {
-  constructor({ isTTY }) {
+class MultiWritable extends Writable {
+  constructor({ isTTY, streamName }) {
     super()
     this._isTTY = isTTY
-    this.browserWindowOutput = new BrowserWindowOutput()
-    this.mainProcessOutput = new MainProcessOutput()
+    this.mainProcessWritable = remote.process[streamName]
+    this.browserWindowWritable = new BrowserWindowWritable(streamName)
   }
 
   _write(chunk, encoding, callback) {
-    this.mainProcessOutput.write(chunk, encoding)
-    this.browserWindowOutput.write(chunk, encoding)
+    this.mainProcessWritable.write(chunk, encoding)
+    this.browserWindowWritable.write(chunk, encoding)
     // Ideally we'd nest the calls here, but for some reason it doesn't work
     callback()
   }
@@ -22,4 +22,4 @@ class Output extends Writable {
   }
 }
 
-module.exports = Output
+module.exports = MultiWritable

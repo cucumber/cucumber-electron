@@ -1,10 +1,12 @@
 const AnsiToHtml = require('ansi-to-html')
 const { Writable } = require('stream')
 
-class BrowserWindowOutput extends Writable {
-  constructor() {
+class BrowserWindowWritable extends Writable {
+  constructor(streamName) {
     super()
-    this.element = document.body
+    this.element = document.createElement('div')
+    this.element.innerHTML = `<h3>${streamName}</h3>`
+    document.body.appendChild(this.element)
     this.ansiToHtml = new AnsiToHtml()
   }
 
@@ -24,4 +26,4 @@ class BrowserWindowOutput extends Writable {
   }
 }
 
-module.exports = BrowserWindowOutput
+module.exports = BrowserWindowWritable

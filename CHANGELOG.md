@@ -15,6 +15,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 * Only support Node.js > 12
 * Only support Electron > 11
 * Add support for Cucumber.js 7.2.1
+* Use both stdout and stderr
 
 ### [v3.0.0-rc.1](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0)
 

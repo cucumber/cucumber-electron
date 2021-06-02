@@ -57,4 +57,4 @@ Feature: Exception handling
         """
     When I run `cucumber-electron`
     Then the process should exit with code 3
-    And stdout should include "SyntaxError: Unexpected identifier"
+    And stderr should include "SyntaxError: Unexpected identifier"
