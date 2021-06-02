@@ -45,6 +45,7 @@ class CucumberElectronWorld {
     })
 
     this.spawnedProcess.stdout.on('data', chunk => {
+      console.log('STDOUT <<', chunk.toString('utf-8'))
       this.execResult.stdout += chunk.toString()
     })
     this.spawnedProcess.stdout.on('end', () => {
@@ -52,6 +53,7 @@ class CucumberElectronWorld {
       this.execResult.stdoutEnded = true
     })
     this.spawnedProcess.stderr.on('data', chunk => {
+      console.log('STDERR <<', chunk.toString('utf-8'))
       this.execResult.stderr += chunk.toString()
     })
     this.spawnedProcess.stderr.on('end', () => {

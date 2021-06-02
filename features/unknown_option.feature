@@ -1,3 +1,4 @@
+@wip
 Feature: Unknown CLI option
   Scenario: Running the CLI with an unknown option
     When I run `cucumber-electron --unknown-option`
