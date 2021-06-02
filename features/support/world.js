@@ -40,7 +40,10 @@ class CucumberElectronWorld {
     const childEnv = Object.assign(process.env, env)
     this.spawnedProcess = spawn(
       'node',
-      ['-e', 'console.error("hello stderr"); console.log("hello stdout"); process.exit(1)'],
+      [
+        '-e',
+        'const VError = require("verror"); console.error(VError.fullStack(new Error("error: unknown option \'--unknown-option\'"))); console.log("hello stdout"); process.exit(1)',
+      ],
       {
         cwd: this.tempDir,
         env: childEnv,
