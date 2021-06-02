@@ -109,9 +109,7 @@ class CucumberElectronWorld {
   }
 
   async assertStderrIncludes(expectedOutput) {
-    // On windows, everything goes out of stderr. Electron.exe needs a shim, or something
-    const errorStream = os.platform() === 'win32' ? 'stdout' : 'stderr'
-    return this.assertOutputIncludes(expectedOutput, errorStream)
+    return this.assertOutputIncludes(expectedOutput, 'stderr')
   }
 
   async assertOutputIncludesColours() {
