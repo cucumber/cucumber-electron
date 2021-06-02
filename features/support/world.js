@@ -47,8 +47,16 @@ class CucumberElectronWorld {
     this.spawnedProcess.stdout.on('data', chunk => {
       this.execResult.stdout += chunk.toString()
     })
+    this.spawnedProcess.stdout.on('end', () => {
+      console.log('STDOUT end')
+      this.execResult.stdoutEnded = true
+    })
     this.spawnedProcess.stderr.on('data', chunk => {
       this.execResult.stderr += chunk.toString()
+    })
+    this.spawnedProcess.stderr.on('end', () => {
+      console.log('STDERR end')
+      this.execResult.stderrEnded = true
     })
     this.spawnedProcess.on('error', e => {
       this.execResult.error = e
@@ -58,12 +66,15 @@ class CucumberElectronWorld {
 
   async ensureProcessHasExited() {
     if (this.spawnedProcess.exitCode == null) {
-      return new Promise(resolve => {
-        this.spawnedProcess.on('exit', code => {
-          this.execResult.exitCode = code
-          resolve()
-        })
-      })
+      return Promise.all([
+        new Promise(resolve => {
+          this.spawnedProcess.on('exit', code => {
+            console.log('EXIT')
+            this.execResult.exitCode = code
+            resolve()
+          })
+        }),
+      ])
     }
   }
 
