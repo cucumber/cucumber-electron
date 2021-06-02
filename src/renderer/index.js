@@ -12,7 +12,7 @@ const Output = require('./output')
 
 const STATUS_SUCCESS = 0
 const STATUS_ERROR_DURING_CUCUMBER_RUN = 2
-const STATUS_UNCAUGHT_ERROR = 3
+const STATUS_UNCAUGHT_ERROR = 6
 
 const output = new Output({ isTTY: options.isTTY })
 

@@ -38,34 +38,17 @@ class CucumberElectronWorld {
       '------------------------------------\n'
 
     const childEnv = Object.assign(process.env, env)
-    this.spawnedProcess = spawn(
-      'node',
-      [
-        '-e',
-        'const VError = require("verror"); console.error(VError.fullStack(new Error("error: unknown option \'--unknown-option\'"))); console.log("hello stdout"); process.exit(1)',
-      ],
-      {
-        cwd: this.tempDir,
-        env: childEnv,
-        detached: true,
-      },
-    )
+    this.spawnedProcess = spawn('node', args, {
+      cwd: this.tempDir,
+      env: childEnv,
+      detached: true,
+    })
 
     this.spawnedProcess.stdout.on('data', chunk => {
-      console.log('STDOUT <<', chunk.toString('utf-8'))
       this.execResult.stdout += chunk.toString()
     })
-    this.spawnedProcess.stdout.on('end', () => {
-      console.log('STDOUT end')
-      this.execResult.stdoutEnded = true
-    })
     this.spawnedProcess.stderr.on('data', chunk => {
-      console.log('STDERR <<', chunk.toString('utf-8'))
       this.execResult.stderr += chunk.toString()
-    })
-    this.spawnedProcess.stderr.on('end', () => {
-      console.log('STDERR end')
-      this.execResult.stderrEnded = true
     })
     this.spawnedProcess.on('error', e => {
       this.execResult.error = e
@@ -75,15 +58,13 @@ class CucumberElectronWorld {
 
   async ensureProcessHasExited() {
     if (this.spawnedProcess.exitCode == null) {
-      return Promise.all([
-        new Promise(resolve => {
-          this.spawnedProcess.on('exit', code => {
-            console.log('EXIT')
-            this.execResult.exitCode = code
-            resolve()
-          })
-        }),
-      ])
+      return new Promise(resolve => {
+        this.spawnedProcess.on('exit', code => {
+          console.log('EXIT')
+          this.execResult.exitCode = code
+          resolve()
+        })
+      })
     }
   }
 
