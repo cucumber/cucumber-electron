@@ -38,11 +38,15 @@ class CucumberElectronWorld {
       '------------------------------------\n'
 
     const childEnv = Object.assign(process.env, env)
-    this.spawnedProcess = spawn('node', ['-e', 'console.error("hello stderr"); console.log("hello stdout"); process.exit(1)'], {
-      cwd: this.tempDir,
-      env: childEnv,
-      detached: true,
-    })
+    this.spawnedProcess = spawn(
+      'node',
+      ['-e', 'console.error("hello stderr"); console.log("hello stdout"); process.exit(1)'],
+      {
+        cwd: this.tempDir,
+        env: childEnv,
+        detached: true,
+      },
+    )
 
     this.spawnedProcess.stdout.on('data', chunk => {
       console.log('STDOUT <<', chunk.toString('utf-8'))
