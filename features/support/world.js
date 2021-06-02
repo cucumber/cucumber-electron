@@ -60,7 +60,6 @@ class CucumberElectronWorld {
     if (this.spawnedProcess.exitCode == null) {
       return new Promise(resolve => {
         this.spawnedProcess.on('exit', code => {
-          console.log('EXIT')
           this.execResult.exitCode = code
           resolve()
         })
