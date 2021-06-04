@@ -42,7 +42,7 @@ ipc.on('run-cucumber', () => {
       argv: options.cucumberArgv,
       cwd: process.cwd(),
       stdout: stdout,
-      // TODO: Cucumber.js 6.2.1 ignores the stderr option. We should fix this.
+      // TODO: Cucumber.js 7.2.1 ignores the stderr option. We should fix this.
       stderr: stderr,
     })
     // sadly, we have to exit immediately, we can't wait for the event loop
