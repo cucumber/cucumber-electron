@@ -30,22 +30,25 @@ app.whenReady().then(() => {
   })
 
   win.webContents.once('did-finish-load', () => {
-    if (options.interactiveMode) {
-      win.show()
-      win.webContents.openDevTools()
-      win.webContents.on('devtools-opened', () => {
-        // Debugger is not immediately ready
-        setTimeout(() => {
-          win.webContents.send('run-cucumber')
-          // after the first run, reloading the electron window re-runs cucumber
-          ipc.on('ready-to-run-cucumber', () => {
-            win.webContents.send('run-cucumber')
-          })
-        }, 250)
-      })
-    } else {
+    ipc.on('cucumber-run-end', (_, code) => app.exit(code))
+
+    if (!options.interactiveMode) {
       win.webContents.send('run-cucumber')
+      return
     }
+
+    win.show()
+    win.webContents.openDevTools()
+    win.webContents.on('devtools-opened', () => {
+      // Debugger is not immediately ready
+      setTimeout(() => {
+        win.webContents.send('run-cucumber')
+        // after the first run, reloading the electron window re-runs cucumber
+        ipc.on('ready-to-run-cucumber', () => {
+          win.webContents.send('run-cucumber')
+        })
+      }, 250)
+    })
   })
 
   if (!options.interactiveMode && process.platform === 'darwin') {

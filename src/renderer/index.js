@@ -26,7 +26,7 @@ const exitWithCucumberResult = result =>
   exitWithCode(result.success ? STATUS_SUCCESS : STATUS_ERROR_DURING_CUCUMBER_RUN)
 
 const exitWithCode = (code = STATUS_SUCCESS) =>
-  !options.interactiveMode && electron.remote.process.exit(code)
+  !options.interactiveMode && ipc.send('cucumber-run-end', code)
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 
