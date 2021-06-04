@@ -53,18 +53,21 @@ class CucumberElectronWorld {
     this.spawnedProcess.on('error', e => {
       this.execResult.error = e
     })
-    this.spawnedProcess.on('exit', code => (this.execResult.exitCode = code))
   }
 
   async ensureProcessHasExited() {
-    if (this.spawnedProcess.exitCode == null) {
-      return new Promise(resolve => {
-        this.spawnedProcess.on('exit', code => {
-          this.execResult.exitCode = code
-          resolve()
-        })
+    if (this.spawnedProcess.exitCode != null) return
+
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        console.error(this.printExecResult())
+        reject(new Error('The process did not exit'))
+      }, 12500)
+      this.spawnedProcess.on('exit', code => {
+        clearTimeout(timeout)
+        resolve(code)
       })
-    }
+    })
   }
 
   async assertProcessDidNotExit() {
