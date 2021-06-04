@@ -8,7 +8,7 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "ci": "cucumber-js && node ./bin/cucumber-electron.js",
+    "ci": "node ./bin/cucumber-electron.js && cucumber-js",
     "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
     "eslint": "eslint \"**/*.js\"",
     "eslint:fix": "eslint \"**/*.js\" --fix",
