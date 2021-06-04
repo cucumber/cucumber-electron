@@ -11,7 +11,7 @@ class MultiWritable extends Writable {
   }
 
   _write(chunk, encoding, callback) {
-    this.mainProcessWritable.write(chunk, encoding)
+    this.mainProcessWritable.write(chunk.toString('utf-8'), encoding)
     this.browserWindowWritable.write(chunk, encoding)
     // Ideally we'd nest the calls here, but for some reason it doesn't work
     callback()
