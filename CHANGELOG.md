@@ -11,7 +11,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 <!-- Releases -->
 ### [Unreleased](https://github.com/cucumber/cucumber-electron/compare/v3.0.0...master)
 
-* N/A
+* Remove dependency on electron-window package
 
 ### [v3.0.0-rc.1](https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0)
 
