@@ -15,7 +15,7 @@ global.mainProcessDebug = function ({ namespaces, args }) {
 
 let win
 
-app.on('ready', () => {
+app.whenReady().then(() => {
   win = new BrowserWindow({
     height: 900,
     width: 1000,
