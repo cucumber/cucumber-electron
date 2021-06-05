@@ -1,6 +1,6 @@
-const { join, resolve } = require('path')
-const window = require('electron-window')
-const { app, ipcMain: ipc } = require('electron')
+const { join } = require('path')
+const url = require('url')
+const { app, ipcMain: ipc, BrowserWindow } = require('electron')
 app.commandLine.appendSwitch('--disable-http-cache')
 
 const Options = require('./cli/options')
@@ -16,7 +16,7 @@ global.mainProcessDebug = function ({ namespaces, args }) {
 let win
 
 app.on('ready', () => {
-  win = window.createWindow({
+  win = new BrowserWindow({
     height: 900,
     width: 1000,
     focusable: options.interactiveMode,
@@ -52,9 +52,12 @@ app.on('ready', () => {
     app.dock.hide()
   }
 
-  const indexPath = resolve(join(__dirname, 'renderer/index.html'))
-  // undocumented call in electron-window
-  win._loadURLWithArgs(indexPath, {}, () => {})
+  const indexPath = url.format({
+    protocol: 'file',
+    slashes: true,
+    pathname: join(__dirname, 'renderer/index.html'),
+  })
+  win.loadURL(indexPath)
 })
 
 // in debug mode electron window stays open after ctrc-c
