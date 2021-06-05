@@ -1,4 +1,4 @@
-const { join, resolve } = require('path')
+const { join } = require('path')
 const url = require('url')
 const { app, ipcMain: ipc, BrowserWindow } = require('electron')
 app.commandLine.appendSwitch('--disable-http-cache')
