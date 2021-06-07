@@ -1,24 +1,26 @@
 const Options = require('../cli/options')
 const electron = require('electron')
-const options = new Options(electron.remote.process.argv)
+const remote = require('electron').remote
+const options = new Options(remote.process.argv)
 
 require('./patches/console')
 require('./keyboard/bindings')
 
 const Cucumber = require('@cucumber/cucumber')
 
-const Output = require('./output')
+const MultiWritable = require('./output')
 
 const STATUS_SUCCESS = 0
 const STATUS_ERROR_DURING_CUCUMBER_RUN = 2
 const STATUS_UNCAUGHT_ERROR = 3
 
-const output = new Output({ isTTY: options.isTTY })
+const stdout = new MultiWritable({ isTTY: options.isTTY, streamName: 'stdout' })
+const stderr = new MultiWritable({ isTTY: options.isTTY, streamName: 'stderr' })
 
 const { ipcRenderer: ipc } = electron
 
 const exitWithUncaughtError = reason => {
-  output.write(reason.stack)
+  stderr.write(reason.stack)
   exitWithCode(STATUS_UNCAUGHT_ERROR)
 }
 
@@ -35,18 +37,14 @@ process.on('unhandledRejection', exitWithUncaughtError)
 process.on('exit', exitWithCode)
 
 ipc.on('run-cucumber', () => {
-  try {
-    const cli = new Cucumber.Cli({
-      argv: options.cucumberArgv,
-      cwd: process.cwd(),
-      stdout: output,
-    })
-    // sadly, we have to exit immediately, we can't wait for the event loop
-    // to drain https://github.com/electron/electron/issues/2358
-    cli.run().then(exitWithCucumberResult, exitWithUncaughtError)
-  } catch (err) {
-    exitWithUncaughtError(err)
-  }
+  const cli = new Cucumber.Cli({
+    argv: options.cucumberArgv,
+    cwd: process.cwd(),
+    stdout: stdout,
+    // TODO: Cucumber.js 7.2.1 ignores the stderr option. We should fix this.
+    stderr: stderr,
+  })
+  cli.run().then(exitWithCucumberResult).catch(exitWithUncaughtError)
 })
 
 ipc.send('ready-to-run-cucumber')

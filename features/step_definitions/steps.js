@@ -55,10 +55,6 @@ Then('the process should not exit', async function () {
   await this.assertProcessDidNotExit()
 })
 
-Then('the output should include:', async function (expectedOutput) {
-  await this.assertOutputIncludes(expectedOutput)
-})
-
 Then('stdout should include {string}', async function (expectedOutput) {
   await this.assertStdoutIncludes(expectedOutput)
 })

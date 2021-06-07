@@ -8,8 +8,8 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "ci": "cucumber-js && node ./bin/cucumber-electron.js",
-    "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
+    "ci": "node ./bin/cucumber-electron.js --tags \"not @wip\" && cucumber-js --tags \"not @wip\"",
+    "test": "npm run eslint && npm run ci",
     "eslint": "eslint \"**/*.js\"",
     "eslint:fix": "eslint \"**/*.js\" --fix",
     "update-dependencies": "npx npm-check-updates --upgrade --dep prod,dev,optional,bundle"
@@ -29,18 +29,18 @@
     "ansi-to-html": "^0.6.14"
   },
   "peerDependencies": {
-    "@cucumber/cucumber": "^7.0.0",
-    "electron": ">=8.2.0 <12"
+    "@cucumber/cucumber": "^7.2.1",
+    "electron": ">=12 <14"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^7.0.0",
+    "@cucumber/cucumber": "^7.2.1",
     "colors": "^1.4.0",
     "debug": "^4.3.1",
     "del": "^6.0.0",
-    "electron": "^11.1.1",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-prettier": "^3.3.0",
+    "electron": "^12.0.6",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "mkdirp": "^1.0.4",
     "prettier": "^2.2.1"
   }
