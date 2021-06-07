@@ -1,3 +1,5 @@
+# This is WIP until we patch Cucumber.js to configure Commander to not call process.exit
+# See https://github.com/tj/commander.js/#override-exit-and-output-handling
 @wip
 Feature: Unknown CLI option
   Scenario: Running the CLI with an unknown option
