@@ -47,7 +47,7 @@ ipc.on('run-cucumber', () => {
     })
     // sadly, we have to exit immediately, we can't wait for the event loop
     // to drain https://github.com/electron/electron/issues/2358
-    cli.run().then(exitWithCucumberResult, exitWithUncaughtError)
+    cli.run().then(exitWithCucumberResult).catch(exitWithUncaughtError)
   } catch (err) {
     exitWithUncaughtError(err)
   }

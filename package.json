@@ -8,8 +8,8 @@
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "ci": "node ./bin/cucumber-electron.js && cucumber-js",
-    "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js",
+    "ci": "node ./bin/cucumber-electron.js && cucumber-js --tags @wip",
+    "test": "npm run eslint && cucumber-js && node ./bin/cucumber-electron.js --tags @wip",
     "eslint": "eslint \"**/*.js\"",
     "eslint:fix": "eslint \"**/*.js\" --fix",
     "update-dependencies": "npx npm-check-updates --upgrade --dep prod,dev,optional,bundle"
