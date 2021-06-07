@@ -13,7 +13,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 * Remove dependency on electron-window package
 * Only support Node.js > 12
-* Only support Electron > 11
+* Only support Electron > 12
 * Add support for Cucumber.js 7.2.1
 * Use both stdout and stderr
 
