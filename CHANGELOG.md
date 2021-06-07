@@ -8,7 +8,7 @@ This document is formatted according to the principles of [Keep A CHANGELOG](htt
 
 Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blob/master/CONTRIBUTING.md) for more info on how to contribute to Cucumber.
 
-<!-- Releases -->
+----
 ## [Unreleased]
 
 ### Added
@@ -86,13 +86,15 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 * Added this CHANGELOG.md file per [cucumber/cucumber #251](https://github.com/cucumber/cucumber/issues/251) ([#15](https://github.com/cucumber/cucumber-electron/pull/15) [jaysonesmith](https://github.com/jaysonesmith))
 
-<!-- Contributors -->
-[artemave]:       https://github.com/artemave
-[aslakhellesoy]:  https://github.com/aslakhellesoy
-[jaysonesmith]:   https://github.com/jaysonesmith
-[joshski]:        https://github.com/joshski
-
 <!-- Releases -->
 [Unreleased]: https://github.com/cucumber/cucumber-electron/compare/v4.0.0...main
 [4.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v4.0.0
 [3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v3.0.0
+
+<!-- Contributors -->
+[artemave]:       https://github.com/artemave
+[aslakhellesoy]:  https://github.com/aslakhellesoy
+[jaysonesmith]:   https://github.com/jaysonesmith
+[jbpros]:         https://github.com/jbpros
+[joshski]:        https://github.com/joshski
+[romaingweb]:     https://github.com/romaingweb
