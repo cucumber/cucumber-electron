@@ -11,11 +11,31 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 <!-- Releases -->
 ## [Unreleased]
 
-* Remove dependency on electron-window package
-* Only support Node.js > 12
-* Only support Electron > 12
-* Add support for Cucumber.js 7.2.1
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## [4.0.0] - 2021-06-07
+
+### Changed
+
 * Use both stdout and stderr
+
+### Removed
+
+* Remove dependency on electron-window package
+* Remove support for Node.js < 12
+* Remove support for Electron < 12
+
+### Fixed
+
+* Fix support for Cucumber.js 7.2.1
 
 ## [v3.0.0]
 
@@ -73,5 +93,6 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 [joshski]:        https://github.com/joshski
 
 <!-- Releases -->
-[Unreleased]: https://github.com/cucumber/cucumber-electron/compare/v3.0.0...main
+[Unreleased]: https://github.com/cucumber/cucumber-electron/compare/v4.0.0...main
+[4.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v4.0.0
 [3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v3.0.0
