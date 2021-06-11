@@ -13,6 +13,8 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Added
 
+* Restored support for the `debug` module.
+
 ### Changed
 
 ### Deprecated
