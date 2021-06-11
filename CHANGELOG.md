@@ -91,7 +91,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 [v4.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0...v4.0.0
 [v3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.1...v3.0.0
 [v3.0.0-rc.1]: https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0-rc.1
-[v3.0.0-rc.0]: https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc0
+[v3.0.0-rc.0]: https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc.0
 [v2.7.1]:      https://github.com/cucumber/cucumber-electron/compare/v2.7.0...v2.7.1
 [v2.7.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0
 [v2.6.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.5.0...v2.6.0
