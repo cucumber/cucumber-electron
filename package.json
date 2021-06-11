@@ -26,22 +26,22 @@
     "url": "git://github.com/cucumber/cucumber-electron.git"
   },
   "dependencies": {
-    "ansi-to-html": "^0.6.14"
+    "ansi-to-html": "^0.6.15"
   },
   "peerDependencies": {
     "@cucumber/cucumber": "^7.2.1",
     "electron": ">=12 <14"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^7.2.1",
-    "colors": "^1.4.0",
-    "debug": "^4.3.1",
-    "del": "^6.0.0",
-    "electron": "^12.0.6",
-    "eslint": "^7.25.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "mkdirp": "^1.0.4",
-    "prettier": "^2.2.1"
+    "@cucumber/cucumber": "7.2.1",
+    "colors": "1.4.0",
+    "debug": "4.3.1",
+    "del": "6.0.0",
+    "electron": "13.1.2",
+    "eslint": "7.28.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "mkdirp": "1.0.4",
+    "prettier": "2.3.1"
   }
 }
