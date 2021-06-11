@@ -62,19 +62,19 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 * Upgrade dependencies
 * Switch from `yarn.lock` to `package-lock.json`
 
-## [2.7.0] - 2019-06-07
+## [v2.7.0] - 2019-06-07
 
 * Support for electron 5 and node 12
 
-## [2.6.0] - 2018-12-09
+## [v2.6.0] - 2018-12-09
 
 * Fix coloured terminal output when using cucumber-js 5.0
 
-## [2.5.0] - 2018-06-07
+## [v2.5.0] - 2018-06-07
 
 * Only disable web security when the environment variable CUCUMBER_ELECTRON_DISABLE_WEB_SECURITY is set to '1'
 
-## [2.4.0] - 2018-02-20
+## [v2.4.0] - 2018-02-20
 
 * Added CLI `--help` option.
 
@@ -88,15 +88,15 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 <!-- Releases -->
 [Unreleased]: https://github.com/cucumber/cucumber-electron/compare/v4.0.0...main
-[4.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0...v4.0.0
-[3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v3.0.0
-[3.0.0-rc1]:  https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc0...v3.0.0-rc1
-[3.0.0-rc0]:  https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc0
-[2.7.1]:      https://github.com/cucumber/cucumber-electron/compare/v2.7.0...v2.7.1
-[2.7.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0
-[2.6.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.5.0...v2.6.0
-[2.5.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.4.0...v2.5.0
-[2.4.0]:      https://github.com/cucumber/cucumber-electron/releases/tag/v2.4.0
+[v4.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0...v4.0.0
+[v3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v3.0.0
+[v3.0.0-rc1]:  https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc0...v3.0.0-rc1
+[v3.0.0-rc0]:  https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc0
+[v2.7.1]:      https://github.com/cucumber/cucumber-electron/compare/v2.7.0...v2.7.1
+[v2.7.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0
+[v2.6.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.5.0...v2.6.0
+[v2.5.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.4.0...v2.5.0
+[v2.4.0]:      https://github.com/cucumber/cucumber-electron/releases/tag/v2.4.0
 
 <!-- Contributors -->
 [artemave]:       https://github.com/artemave
