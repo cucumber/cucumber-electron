@@ -1,9 +1,10 @@
+// This is the main entry point for the electron process
 const { join } = require('path')
 const url = require('url')
 const { app, ipcMain: ipc, BrowserWindow } = require('electron')
 app.commandLine.appendSwitch('--disable-http-cache')
 
-const Options = require('./cli/options')
+const Options = require('../cli/options')
 const options = new Options(process.argv)
 
 global.mainProcessDebug = function ({ namespaces, args }) {
@@ -58,7 +59,7 @@ app.whenReady().then(() => {
   const indexPath = url.format({
     protocol: 'file',
     slashes: true,
-    pathname: join(__dirname, 'renderer/index.html'),
+    pathname: join(__dirname, 'index.html'),
   })
   win.loadURL(indexPath)
 })

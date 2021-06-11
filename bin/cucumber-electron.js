@@ -23,7 +23,7 @@ function showVersion() {
 }
 
 function runCucumberInRendererProcess() {
-  args.unshift(path.resolve(path.join(__dirname, '../src/index.js')))
+  args.unshift(path.resolve(path.join(__dirname, '../src/renderer/main.js')))
   if (process.stdout.isTTY || process.env.CUCUMBER_ELECTRON_FORCE_TTY === 'true') {
     args.push('--TTY')
   }
