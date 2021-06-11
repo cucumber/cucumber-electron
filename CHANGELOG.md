@@ -21,7 +21,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
-## [4.0.0] - 2021-06-07
+## [v4.0.0] - 2021-06-07
 
 ### Changed
 
