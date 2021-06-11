@@ -87,11 +87,11 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 * Added this CHANGELOG.md file per [cucumber/cucumber #251](https://github.com/cucumber/cucumber/issues/251) ([#15](https://github.com/cucumber/cucumber-electron/pull/15) [jaysonesmith](https://github.com/jaysonesmith))
 
 <!-- Releases -->
-[Unreleased]: https://github.com/cucumber/cucumber-electron/compare/v4.0.0...main
+[Unreleased]:  https://github.com/cucumber/cucumber-electron/compare/v4.0.0...main
 [v4.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0...v4.0.0
-[v3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc1...v3.0.0
-[v3.0.0-rc1]:  https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc0...v3.0.0-rc1
-[v3.0.0-rc0]:  https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc0
+[v3.0.0]:      https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.1...v3.0.0
+[v3.0.0-rc.1]: https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.0...v3.0.0-rc.1
+[v3.0.0-rc.0]: https://github.com/cucumber/cucumber-electron/compare/v2.7.1...v3.0.0-rc0
 [v2.7.1]:      https://github.com/cucumber/cucumber-electron/compare/v2.7.0...v2.7.1
 [v2.7.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.6.0...v2.7.0
 [v2.6.0]:      https://github.com/cucumber/cucumber-electron/compare/v2.5.0...v2.6.0
