@@ -13,10 +13,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Added
 
-* Add an API that can be used in step definitions and hooks:
-  `const CucumberElectron = require('@cucumber/electron')`
-
-* Add `CucumberElectron#appendFakeBrowser(name: string)`
+* Add a FakeBrowsers API that can be used in step definitions and hooks
 
 ### Changed
 
