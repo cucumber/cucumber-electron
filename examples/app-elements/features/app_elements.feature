@@ -1,4 +1,4 @@
-Feature: Fake Browser
+Feature: App Elements
 
   Scenario: Two app elements
     Given Josh has an app element with:
