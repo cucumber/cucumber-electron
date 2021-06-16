@@ -14,6 +14,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 ### Added
 
 * Add a AppElements API that can be used in step definitions and hooks
+* Add TypeScript definitions for API
 
 ### Changed
 
