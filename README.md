@@ -25,31 +25,47 @@ Run cucumber-electron like it was Cucumber.js, for example:
 
 Cucumber Electron provides an API that you can use in your step definitions or hooks.
 
-### Fake Browsers
+### App Elements
 
-A fake browser is a DOM element where you can mount the application under test.
+An app element is a DOM element where you can mount the application or component under test.
 
 ```javascript
-const { FakeBrowsers } = require('@cucumber/cucumber-electron')
+const { AppElements } = require('@cucumber/cucumber-electron')
 
 Before(function () {
-  this.fakeBrowsers = new FakeBrowsers()
+  this.appElements = new AppElements()
 })
 
-Given('{word} has a fake browser', function (name) {
-  const contentElement = this.fakeBrowsers.create(name)
+Given('{word} has an app element', function (name) {
+  const appElement = this.appElements.create(document, name)
+  
+  // Mount a React Component
+  ReactDOM.render(<MyComponent />, appElement)
+  
+  // Mount a Vue component
+  new Vue({ el: appElement })
+  
+  // Vanilla DOM
+  appElement.innerHTML = '<h1>Hello World</h1>'
+})
+
+After(function () {
+  if (!process.env.CUCUMBER_ELECTRON_KEEP_APP_ELEMENTS) {
+    // Destroy all app elements after each scenario
+    this.appElements.destroyAll()
+  }
 })
 ```
 
 In [interactive debugging](#interactive-debugging) mode this will look something like this:
 
-![Fake Browsers](docs/images/fake-browser.png)
+![App Elements](docs/images/app-elements.png)
 
-See the [fake-browser example](examples/fake-browser) for more details.
+See the [app-elements example](examples/app-elements) for more details.
 
 You can run it like this:
 
-    KEEP_FAKE_BROWSERS=1 ./bin/cucumber-electron.js examples/fake-browser --interactive
+    CUCUMBER_ELECTRON_KEEP_APP_ELEMENTS=1 ./bin/cucumber-electron.js examples/app-elements --interactive
 
 ## Interactive Debugging
 

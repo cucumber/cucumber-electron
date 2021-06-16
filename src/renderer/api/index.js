@@ -1,1 +1,1 @@
-module.exports.FakeBrowsers = require('./FakeBrowsers')
+module.exports.AppElements = require('./AppElements')
