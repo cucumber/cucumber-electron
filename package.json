@@ -2,14 +2,19 @@
   "name": "@cucumber/electron",
   "version": "4.0.0",
   "description": "Runs cucumber.js in electron",
-  "main": "index.js",
+  "main": "src/index.js",
+  "types":"@types/cucumber-electron/index.d.ts",
   "license": "MIT",
   "bin": {
     "cucumber-electron": "./bin/cucumber-electron.js"
   },
   "scripts": {
-    "ci": "node ./bin/cucumber-electron.js --tags \"not @wip\" && cucumber-js --tags \"not @wip\"",
     "test": "npm run eslint && npm run ci",
+    "ci": "npm run mocha && npm run cucumber-electron && npm run cucumber",
+    "mocha": "mocha",
+    "cucumber-electron": "node ./bin/cucumber-electron.js --tags \"not @wip\"",
+    "cucumber": "cucumber-js --tags \"not @wip\"",
+    "build": "tsc",
     "eslint": "eslint \"**/*.js\"",
     "eslint:fix": "eslint \"**/*.js\" --fix",
     "update-dependencies": "npx npm-check-updates --upgrade --dep prod,dev,optional,bundle"
@@ -34,6 +39,8 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "7.2.1",
+    "@types/jsdom": "16.2.11",
+    "@types/mocha": "8.2.2",
     "colors": "1.4.0",
     "debug": "4.3.1",
     "del": "6.0.0",
@@ -41,7 +48,11 @@
     "eslint": "7.28.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
+    "jsdom": "16.6.0",
     "mkdirp": "1.0.4",
-    "prettier": "2.3.1"
+    "mocha": "9.0.0",
+    "prettier": "2.3.1",
+    "ts-node": "10.0.0",
+    "typescript": "4.3.2"
   }
 }

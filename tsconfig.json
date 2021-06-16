@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "@types/cucumber-electron",
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "types": [
+      "node",
+      "mocha"
+    ]
+  },
+  "include": [
+    "src/renderer/api/*.js",
+  ],
+  "$schema": "https://json.schemastore.org/tsconfig",
+}
