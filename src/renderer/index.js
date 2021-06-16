@@ -6,6 +6,7 @@ const options = new Options(remote.process.argv)
 
 require('./patches/console')
 require('./keyboard/bindings')
+require('./stylesheet')
 
 const Cucumber = require('@cucumber/cucumber')
 
