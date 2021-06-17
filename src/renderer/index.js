@@ -1,3 +1,4 @@
+// This file is loaded by index.html
 const Options = require('../cli/options')
 const electron = require('electron')
 const remote = require('electron').remote
