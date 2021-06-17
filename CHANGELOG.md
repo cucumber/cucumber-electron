@@ -25,9 +25,9 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Added
 
-* Add `--stylesheet [PATH]` option to load a custom stylesheet
-* Add a AppElements API that can be used in step definitions and hooks
-* Add TypeScript definitions for API
+* Add `--stylesheet [PATH]` option to load a custom stylesheet.
+* Add a `AppElements` API for creating new DOM elements for hosting components and apps. See [documentaion](README.md#app-elements) for details. 
+* Add TypeScript definitions for the new API.
 
 ## [4.0.0] - 2021-06-07
 
