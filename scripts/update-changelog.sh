@@ -8,7 +8,6 @@ set -uf -o pipefail
 # * The ## [Unreleased] header is changed to a version header with date
 # * A new, empty [Unreleased] paragraph is added at the top
 #
-
 changelog=$(</dev/stdin)
 
 new_version=$1
@@ -44,7 +43,10 @@ changelog=$(echo "${changelog}" | sed "s/## \[Unreleased\]/## \[${new_version}\]
 
 line_number_colon_unreleased_link=$(echo "${changelog}" | grep -n "\[Unreleased\]")
 line_number=$(echo "${line_number_colon_unreleased_link}" | cut -d: -f1)
-unreleased_link=$(echo "${line_number_colon_unreleased_link}" | cut -d' ' -f2)
+
+line_number_colon_unreleased_link_arr=($line_number_colon_unreleased_link)
+unreleased_link=${line_number_colon_unreleased_link_arr[1]}
+>&2 echo "unreleased_link=${unreleased_link}"
 
 if [[ "${unreleased_link}" =~ \/v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
   last_version="${BASH_REMATCH[1]}"

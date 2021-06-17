@@ -17,6 +17,6 @@ docker-run:
 	  --env-file ../secrets/secrets.list \
 	  --user 1000 \
 	  --rm \
-	  -it cucumber/cucumber-build:0.4.4 \
+	  -it cucumber/cucumber-build:0.5.2 \
 	  bash
 .PHONY: docker-run
