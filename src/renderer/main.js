@@ -1,6 +1,6 @@
 // This is the main entry point for the electron process
-const { join } = require('path')
-const url = require('url')
+const { join, resolve } = require('path')
+const { pathToFileURL } = require('url')
 const { app, ipcMain: ipc, BrowserWindow } = require('electron')
 app.commandLine.appendSwitch('--disable-http-cache')
 
@@ -56,11 +56,11 @@ app.whenReady().then(() => {
     app.dock.hide()
   }
 
-  const indexPath = url.format({
-    protocol: 'file',
-    slashes: true,
-    pathname: join(__dirname, 'index.html'),
-  })
+  const url = pathToFileURL(join(__dirname, `index.html`))
+  if (options.stylesheet) {
+    url.searchParams.set('stylesheet', resolve(options.stylesheet))
+  }
+  const indexPath = url.href
   win.loadURL(indexPath)
 })
 

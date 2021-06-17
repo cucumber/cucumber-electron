@@ -13,6 +13,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Added
 
+* Add `--stylesheet [PATH]` option to load a custom stylesheet
 * Add a AppElements API that can be used in step definitions and hooks
 * Add TypeScript definitions for API
 

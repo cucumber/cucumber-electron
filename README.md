@@ -76,3 +76,7 @@ The interactive debugger will halt execution on any `debugger` statements, or br
 
 In interactive mode you can re-run all your scenarios by pressing `CMD-R` (MacOS) or `CTRL-R` (Windows/Linux)
 while the browser window has focus.
+
+## Custom Stylesheet
+
+You can add a custom stylesheet to the DOM with the `--stylesheet [PATH]` option.
