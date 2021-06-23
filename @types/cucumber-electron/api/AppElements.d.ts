@@ -3,7 +3,7 @@ declare class AppElements {
     /**
      * @private
      */
-    private fakeBrowserElements;
+    private fakeBrowserWindows;
     /**
      * Creates a new DOM node that looks like a browser window and adds it to the DOM.
      *

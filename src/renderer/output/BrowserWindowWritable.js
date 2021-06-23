@@ -1,12 +1,18 @@
 const AnsiToHtml = require('ansi-to-html')
 const { Writable } = require('stream')
+const fakeWindow = require('../fakeWindow')
 
 class BrowserWindowWritable extends Writable {
   constructor(streamName) {
     super()
-    this.element = document.createElement('div')
-    this.element.innerHTML = `<h3>${streamName}</h3>`
-    document.body.appendChild(this.element)
+    const $fakeBrowserWindow = fakeWindow(
+      document,
+      streamName.toUpperCase(),
+      'cucumber-electron-terminal',
+    )
+    document.body.appendChild($fakeBrowserWindow)
+    this.$terminalElement = $fakeBrowserWindow.querySelector('.cucumber-electron-window-pane')
+    document.body.appendChild($fakeBrowserWindow)
     this.ansiToHtml = new AnsiToHtml()
   }
 
@@ -21,8 +27,8 @@ class BrowserWindowWritable extends Writable {
 
   appendTag(string) {
     const pre = document.createElement('pre')
-    pre.innerHTML = this.ansiToHtml.toHtml(string, { fg: '#000', bg: '#fff' })
-    this.element.appendChild(pre)
+    pre.innerHTML = this.ansiToHtml.toHtml(string)
+    this.$terminalElement.appendChild(pre)
   }
 }
 
