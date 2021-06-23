@@ -21,6 +21,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
+## [4.1.1] - 2021-06-23
+
+### Fixed
+
 * Improve styling of fake terminal and fake browser windows.
 * `AppElements#create(document, title)` now declares a return type of `HTMLElement` instead of `Element`.
   This is to avoid down-casting when working with `@testing-library/dom`, which expects `HTMLElement` in
@@ -100,7 +104,8 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 * Added this CHANGELOG.md file per [cucumber/cucumber #251](https://github.com/cucumber/cucumber/issues/251) ([#15](https://github.com/cucumber/cucumber-electron/pull/15) [jaysonesmith](https://github.com/jaysonesmith))
 
 <!-- Releases -->
-[Unreleased]:  https://github.com/cucumber/cucumber-electron/compare/v4.1.0...main
+[Unreleased]:  https://github.com/cucumber/cucumber-electron/compare/v4.1.1...main
+[4.1.1]:       https://github.com/cucumber/cucumber-electron/compare/v4.1.0...v4.1.1
 [4.1.0]:       https://github.com/cucumber/cucumber-electron/compare/v4.0.0...v4.1.0
 [4.0.0]:       https://github.com/cucumber/cucumber-electron/compare/v3.0.0...v4.0.0
 [3.0.0]:       https://github.com/cucumber/cucumber-electron/compare/v3.0.0-rc.1...v3.0.0
