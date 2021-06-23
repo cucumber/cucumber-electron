@@ -42,7 +42,7 @@ Feature: Exception handling
         throw new Error('I fail early')
         """
     When I run `cucumber-electron`
-    Then the process should exit with code 3
+    Then the process should exit with code 2
 
   Scenario: an exception thrown because of a syntax error
     Given the file "features/b.feature" contains:
@@ -56,5 +56,5 @@ Feature: Exception handling
         haha it is not valid Javascript!!!
         """
     When I run `cucumber-electron`
-    Then the process should exit with code 3
+    Then the process should exit with code 2
     And stderr should include "SyntaxError: Unexpected identifier"
