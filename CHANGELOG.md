@@ -21,6 +21,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
+* `AppElements#create(document, title)` now declares a return type of `HTMLElement` instead of `Element`.
+  This is to avoid down-casting when working with `@testing-library/dom`, which expects `HTMLElement` in
+  various functions.
+
 ## [4.1.0] - 2021-06-17
 
 ### Added

@@ -9,9 +9,9 @@ declare class AppElements {
      *
      * @param {Document} document the DOM document
      * @param {string} title the title of the top bar
-     * @return {Element} a DOM node that can be used to mount a DOM application such as a React or Vue element.
+     * @return {HTMLElement} a DOM node that can be used to mount a DOM application such as a React or Vue element.
      */
-    create(document: Document, title: string): Element;
+    create(document: Document, title: string): HTMLElement;
     /**
      * Destroys all previously created app elements.
      */
