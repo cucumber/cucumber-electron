@@ -1,6 +1,6 @@
 {
   "name": "@cucumber/electron",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Runs cucumber.js in electron",
   "main": "src/index.js",
   "types": "@types/cucumber-electron/api/index.d.ts",
