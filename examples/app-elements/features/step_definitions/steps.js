@@ -17,3 +17,7 @@ Given('{word} has an app element with:', function (name, html) {
   const contentElement = this.appElements.create(document, name)
   contentElement.innerHTML = html
 })
+
+Given('a failing step', () => {
+  throw new Error('Whoops')
+})

@@ -9,3 +9,8 @@ Feature: App Elements
       ```
       <h1>This is Romain's app</h1>
       ```
+
+  Scenario:
+    Given a failing step
+    And an undefined step
+    And a failing step

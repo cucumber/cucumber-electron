@@ -7,9 +7,9 @@ describe('AppElements', () => {
     const document = new JSDOM('<!DOCTYPE html>').window.document
     const appElements = new AppElements()
     const appElement = appElements.create(document, 'Aslak')
-    const fakeBrowserElements = Array.from(document.querySelectorAll('.cucumber-electron-fake-browser'))
+    const fakeBrowserElements = Array.from(document.querySelectorAll('.cucumber-electron-browser'))
     assert.strictEqual(fakeBrowserElements.length, 1)
-    assert.strictEqual(appElement.parentElement, fakeBrowserElements[0])
+    assert.strictEqual(appElement, fakeBrowserElements[0])
   })
 
   it('destroys all app elements', () => {
@@ -18,7 +18,7 @@ describe('AppElements', () => {
     appElements.create(document, 'Aslak')
     appElements.create(document, 'Julien')
     appElements.destroyAll()
-    const fakeBrowserElements = Array.from(document.querySelectorAll('.cucumber-electron-fake-browser'))
+    const fakeBrowserElements = Array.from(document.querySelectorAll('.cucumber-electron-browser'))
     assert.strictEqual(fakeBrowserElements.length, 0)
   })
 })

@@ -21,6 +21,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
+* Improve styling of fake terminal and fake browser windows.
 * `AppElements#create(document, title)` now declares a return type of `HTMLElement` instead of `Element`.
   This is to avoid down-casting when working with `@testing-library/dom`, which expects `HTMLElement` in
   various functions.
