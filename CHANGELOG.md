@@ -21,6 +21,9 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
+* Fix `TS2749: 'AppElements' refers to a value, but is being used as a type here. Did you mean 'typeof AppElements'?`
+  when using `AppElements` as a type.
+
 ## [4.1.1] - 2021-06-23
 
 ### Fixed

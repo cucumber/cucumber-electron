@@ -1,6 +1,6 @@
 import assert from 'assert'
 import { JSDOM } from 'jsdom'
-import { AppElements } from '..'
+import { AppElements } from '../src'
 
 describe('AppElements', () => {
   it('creates an app element', () => {

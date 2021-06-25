@@ -1,3 +1,2 @@
-export var AppElements: {
-    new (): import("./AppElements");
-};
+export { AppElements };
+import AppElements = require("./AppElements");

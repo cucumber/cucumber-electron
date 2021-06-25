@@ -1,1 +1,5 @@
-module.exports.AppElements = require('./AppElements')
+const AppElements = require('./AppElements')
+
+module.exports = {
+  AppElements,
+}
