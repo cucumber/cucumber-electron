@@ -21,6 +21,8 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
+* Fixed border radius of windows
+
 ## [4.1.2] - 2021-06-25
 
 ### Fixed
