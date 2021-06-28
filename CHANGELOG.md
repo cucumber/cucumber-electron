@@ -21,6 +21,10 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 
 ### Fixed
 
+## [4.1.3] - 2021-06-28
+
+### Fixed
+
 * Fixed border radius of windows
 
 ## [4.1.2] - 2021-06-25
@@ -114,7 +118,8 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 * Added this CHANGELOG.md file per [cucumber/cucumber #251](https://github.com/cucumber/cucumber/issues/251) ([#15](https://github.com/cucumber/cucumber-electron/pull/15) [jaysonesmith](https://github.com/jaysonesmith))
 
 <!-- Releases -->
-[Unreleased]:  https://github.com/cucumber/cucumber-electron/compare/v4.1.2...main
+[Unreleased]:  https://github.com/cucumber/cucumber-electron/compare/v4.1.3...main
+[4.1.3]:       https://github.com/cucumber/cucumber-electron/compare/v4.1.2...v4.1.3
 [4.1.2]:       https://github.com/cucumber/cucumber-electron/compare/v4.1.1...v4.1.2
 [4.1.1]:       https://github.com/cucumber/cucumber-electron/compare/v4.1.0...v4.1.1
 [4.1.0]:       https://github.com/cucumber/cucumber-electron/compare/v4.0.0...v4.1.0
