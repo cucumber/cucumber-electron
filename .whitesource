@@ -1,15 +1,23 @@
 {
+  "settingsInheritedFrom": "SmartBear/whitesource-config@main",
   "scanSettings": {
-    "configMode": "AUTO",
-    "configExternalURL": "",
-    "projectToken": "",
     "baseBranches": []
   },
   "checkRunSettings": {
-    "vulnerableCheckRunConclusionLevel": "failure",
+    "vulnerableCheckRunConclusionLevel": "success",
     "displayMode": "diff"
   },
-  "issueSettings": {
-    "minSeverityLevel": "LOW"
+  "remediateSettings": {
+    "enableRenovate": true,
+    "extends": ["config:base"],
+    "schedule": ["after 5pm and before 5am every weekday", "every weekend"],
+    "timezone": "Europe/London",
+    "packageRules": [
+      {
+        "matchUpdateTypes": ["minor", "patch"],
+        "matchCurrentVersion": "!/^0/",
+        "automerge": true
+      }
+    ]
   }
 }
