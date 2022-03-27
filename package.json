@@ -44,7 +44,7 @@
     "colors": "1.4.0",
     "debug": "4.3.2",
     "del": "6.0.0",
-    "electron": "13.6.6",
+    "electron": "13.5.2",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
