@@ -16,8 +16,7 @@
     "cucumber": "cucumber-js --tags \"not @wip\"",
     "build": "tsc",
     "eslint": "eslint \"**/*.js\"",
-    "eslint:fix": "eslint \"**/*.js\" --fix",
-    "update-dependencies": "npx npm-check-updates --upgrade --dep prod,dev,optional,bundle"
+    "eslint:fix": "eslint \"**/*.js\" --fix"
   },
   "author": "Josh Chisholm <joshuachisholm@gmail.com>",
   "contributors": [
